@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2024 a las 00:03:26
+-- Tiempo de generación: 08-11-2024 a las 00:08:26
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -52,16 +52,32 @@ CREATE TABLE `especialidades` (
   `especialidades` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `especialidades`
+--
+
+INSERT INTO `especialidades` (`id_especialidad`, `especialidades`) VALUES
+(1, 'yoga'),
+(2, 'pilates');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `estadoentrenador`
 --
 
-CREATE TABLE `estadoentrenador` (
-  `id_estadoEntrenador` int(11) NOT NULL,
+CREATE TABLE `estadoprofesor` (
+  `id_estadoprofesores` int(11) NOT NULL,
   `estadoEntrenado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estadoprofesores`
+--
+
+INSERT INTO `estadoprofesores` (`id_estadoprofesores`, `estadoEntrenado`) VALUES
+(1, 1),
+(2, 0);
 
 -- --------------------------------------------------------
 
@@ -145,6 +161,26 @@ CREATE TABLE `profesores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `profesores`
+--
+
+INSERT INTO `profesores` (`id_profesores`, `nombre`, `apellido`, `telefono`, `id_especialidad`, `fechaContratacion`, `id_estadoEntrenadoe`) VALUES
+(1, 'paco', 'perez', '12456987', 2, '2024-09-10', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `nombreUsuario` varchar(100) NOT NULL,
+  `contraseniaUsuario` varchar(100) NOT NULL,
+  `id_cliente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -155,7 +191,7 @@ ALTER TABLE `especialidades`
   ADD PRIMARY KEY (`id_especialidad`);
 
 --
--- Indices de la tabla `estadoentrenador`
+-- Indices de la tabla `estadoprofesores`
 --
 ALTER TABLE `estadoentrenador`
   ADD PRIMARY KEY (`id_estadoEntrenador`);
@@ -197,6 +233,12 @@ ALTER TABLE `profesores`
   ADD PRIMARY KEY (`id_profesores`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -204,13 +246,13 @@ ALTER TABLE `profesores`
 -- AUTO_INCREMENT de la tabla `especialidades`
 --
 ALTER TABLE `especialidades`
-  MODIFY `id_especialidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_especialidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estadoentrenador`
 --
 ALTER TABLE `estadoentrenador`
-  MODIFY `id_estadoEntrenador` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estadoEntrenador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estadomempreisa`
@@ -240,7 +282,13 @@ ALTER TABLE `planentrenamiento`
 -- AUTO_INCREMENT de la tabla `profesores`
 --
 ALTER TABLE `profesores`
-  MODIFY `id_profesores` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_profesores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -7,10 +7,10 @@ class ModeloProfesores{
     {
         
         try {
-            $profesor = conexion::conectar()->prepare("SELECT p.*, Es.especialidades FROM  profesores as P INNER JOIN especialidades as Es  ON P.id_especialidad = Es.id_especialidad; ");
+            $profesor = conexion::conectar()->prepare("SELECT nombre as nombreP,apellido as apellidop,telefono as telefonoP,fechaContratacion as fechacontratacionP, especialidades as nombreEspecialida FROM  profesores  INNER JOIN especialidades ON profesores.id_especialidad = especialidades.id_especialidad");
             $profesor->execute();
 
-            return $profesor->fetch(PDO::FETCH_ASSOC);
+            return $profesor->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             return "Error: " . $e->getMessage();
         }
@@ -84,3 +84,5 @@ class ModeloProfesores{
 //         }
 //     }
 // }
+//"SELECT profesores.*, especialidades.especialidades FROM  `profesores`  INNER JOIN `especialidades` ON profesores.id_especialidad = especialidades.id_especialidad; "
+

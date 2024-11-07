@@ -6,7 +6,7 @@
     </div>
     <div class="py-2 d-flex align-items-sm-center flex-sm-row flex-column">
         <div class="d-flex flex-wrap gap-2">    
-            <a href="nuevo_agente" class="btn btn-primary"><i class="fas fa-plus" ></i > &nbsp; Nuevo Profesor</a>
+            <a href="nuevo_profesores" class="btn btn-primary"><i class="fas fa-plus" ></i > &nbsp; Nuevo Profesor</a>
         </div> 
     </div>
     
@@ -19,26 +19,26 @@
                             <tr>
                                 <th>Nombre</th>    
                                 <th>Apellido</th>
-                                <th>Telefon</th>
-                                <th>Email</th>
+                                <th>Telefono</th>
                                 <th>Fechacontratacion</th>
                                 <th>Especialidades</th>
+                                <th>Acciones</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $profesor = ControladorProfesores::crtMostrarProfesores();
-                                foreach ($profesor as $key => $value) {                         
+                                $profesore = ControladorProfesores::crtMostrarProfesores();
+                                //print_r($profesore);
+                                foreach ($profesore as $key => $value){                       
                             ?>
                             <tr >
-                                <td> <?php echo $value["nombre"] ?></td>    
-                                <td> <?php echo $value["apellido"] ?></td>
-                                <td> <?php echo $value["telefono"] ?></td>
-                                <td> <?php echo $value["email"] ?></td>
-                                <td> <?php echo $value["fechaContratacion"] ?></td>
-                                <td> <?php echo $value["especialidades"] ?></td>
-                                <td><a href="editar_agente" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_agente" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                                <td> <?php echo $value["nombreP"] ?></td>    
+                                <td> <?php echo $value["apellidop"] ?></td>
+                                <td> <?php echo $value["telefonoP"] ?></td>
+                                <td> <?php echo Funciones::cambiaFormatoFecha($value["fechacontratacionP"]) ?></td>
+                                <td> <?php echo $value["nombreEspecialida"] ?></td>
+                                <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                             </tr>
 
                             <?php } ?>
