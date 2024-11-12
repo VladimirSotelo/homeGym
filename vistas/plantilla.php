@@ -63,12 +63,12 @@
                         $rutas = explode('/',$_GET["pagina"]);
                         if (
                             // Agentes
-                            $rutas[0] == "Usuarios"||
-                            $rutas[0] == "Entrenadores"||
-                            $rutas[0] == "Clientes" ||
-                            $rutas[0] == "Especialidades" ||
-                            $rutas[0] == "Planes" ||
-                            $rutas[0] == "Pagos" 
+                            $rutas[0] == "usuarios"||
+                            $rutas[0] == "entrenadores"||
+                            $rutas[0] == "clientes" ||
+                            $rutas[0] == "especialidades" ||
+                            $rutas[0] == "planes" ||
+                            $rutas[0] == "pagos" 
                            
                             
                         ) {

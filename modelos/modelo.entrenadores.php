@@ -1,13 +1,17 @@
 <?php
 //MOSTRAR DATOS*/
 require_once 'conexion.php';
-class ModeloProfesores{
+class ModeloEntrenadores{
 
-    static public function mdlMostrarProfesores()
+    static public function mdlMostrarEntrenadores()
     {
         
         try {
-            $profesor = conexion::conectar()->prepare("SELECT nombre as nombreP,apellido as apellidop,telefono as telefonoP,fechaContratacion as fechacontratacionP, especialidades as nombreEspecialida FROM  entrenador  INNER JOIN especialidades ON entrenador.id_especialidad = especialidades.id_especialidad");
+            $profesor = conexion::conectar()->prepare("SELECT e.telefono,e.dni,e.email,e.fechaContratacion,
+            CONCAT(e.apellidoEntrenador,' ',e.nombreEntrenador) as entrenador,especialidades.*,ee.* 
+            from entrenadores as e 
+            inner join especialidades on especialidades.id_especialidades = e.id_especialidades 
+            INNER JOIN estadoentrenador as ee on ee.id_estadoEntrenador = e.id_estadoEntrenador");
             $profesor->execute();
 
             return $profesor->fetchAll(PDO::FETCH_ASSOC);
