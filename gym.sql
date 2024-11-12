@@ -66,16 +66,24 @@ INSERT INTO `especialidades` (`id_especialidad`, `especialidades`) VALUES
 -- Estructura de tabla para la tabla `estadoentrenador`
 --
 
+<<<<<<< HEAD
 CREATE TABLE `estadoentrenador` (
+=======
+CREATE TABLE `estadoEntrenador` (
+>>>>>>> f5d3261c686659ea8523e2ef2a95651055b788ff
   `id_estadoEntrenador` int(11) NOT NULL,
   `estadoEntrenado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `estadoprofesores`
+-- Volcado de datos para la tabla `estadoentrenador`
 --
 
+<<<<<<< HEAD
 INSERT INTO `estadoentrenador` (`id_estadoEntrenador`, `estadoEntrenado`) VALUES
+=======
+INSERT INTO `estadoEntrenador` (`id_estadoEntrenador`, `estadoEntrenado`) VALUES
+>>>>>>> f5d3261c686659ea8523e2ef2a95651055b788ff
 (1, 1),
 (2, 0);
 
@@ -147,11 +155,11 @@ CREATE TABLE `planentrenamiento` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesores`
+-- Estructura de tabla para la tabla `entrenador`
 --
 
-CREATE TABLE `profesores` (
-  `id_profesores` int(11) NOT NULL,
+CREATE TABLE `entrenador` (
+  `id_entrenador` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `telefono` varchar(100) NOT NULL,
@@ -161,10 +169,10 @@ CREATE TABLE `profesores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `profesores`
+-- Volcado de datos para la tabla `entrenador`
 --
 
-INSERT INTO `profesores` (`id_profesores`, `nombre`, `apellido`, `telefono`, `id_especialidad`, `fechaContratacion`, `id_estadoEntrenadoe`) VALUES
+INSERT INTO `entrenador` (`id_entrenador`, `nombre`, `apellido`, `telefono`, `id_especialidad`, `fechaContratacion`, `id_estadoEntrenadoe`) VALUES
 (1, 'paco', 'perez', '12456987', 2, '2024-09-10', 1);
 
 -- --------------------------------------------------------
@@ -191,9 +199,9 @@ ALTER TABLE `especialidades`
   ADD PRIMARY KEY (`id_especialidad`);
 
 --
--- Indices de la tabla `estadoprofesores`
+-- Indices de la tabla `estadoentrenador`
 --
-ALTER TABLE `estadoentrenador`
+ALTER TABLE `estadoEntrenador`
   ADD PRIMARY KEY (`id_estadoEntrenador`);
 
 --
@@ -227,10 +235,10 @@ ALTER TABLE `planentrenamiento`
   ADD PRIMARY KEY (`id_planEntrenamineto`);
 
 --
--- Indices de la tabla `profesores`
+-- Indices de la tabla `entrenador`
 --
-ALTER TABLE `profesores`
-  ADD PRIMARY KEY (`id_profesores`);
+ALTER TABLE `entrenador`
+  ADD PRIMARY KEY (`id_entrenador`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -251,7 +259,7 @@ ALTER TABLE `especialidades`
 --
 -- AUTO_INCREMENT de la tabla `estadoentrenador`
 --
-ALTER TABLE `estadoentrenador`
+ALTER TABLE `estadoEntrenador`
   MODIFY `id_estadoEntrenador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -275,14 +283,14 @@ ALTER TABLE `pagos`
 --
 -- AUTO_INCREMENT de la tabla `planentrenamiento`
 --
-ALTER TABLE `planentrenamiento`
+ALTER TABLE `planEntrenamiento`
   MODIFY `id_planEntrenamineto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `profesores`
+-- AUTO_INCREMENT de la tabla `entrenador`
 --
-ALTER TABLE `profesores`
-  MODIFY `id_profesores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `entrenador`
+  MODIFY `id_entrenador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

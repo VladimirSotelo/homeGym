@@ -7,7 +7,7 @@ class ModeloProfesores{
     {
         
         try {
-            $profesor = conexion::conectar()->prepare("SELECT nombre as nombreP,apellido as apellidop,telefono as telefonoP,fechaContratacion as fechacontratacionP, especialidades as nombreEspecialida FROM  profesores  INNER JOIN especialidades ON profesores.id_especialidad = especialidades.id_especialidad");
+            $profesor = conexion::conectar()->prepare("SELECT nombre as nombreP,apellido as apellidop,telefono as telefonoP,fechaContratacion as fechacontratacionP, especialidades as nombreEspecialida FROM  entrenador  INNER JOIN especialidades ON entrenador.id_especialidad = especialidades.id_especialidad");
             $profesor->execute();
 
             return $profesor->fetchAll(PDO::FETCH_ASSOC);

@@ -30,7 +30,7 @@
                             <?php
                                 $profesore = ControladorProfesores::crtMostrarProfesores();
                                 //print_r($profesore);
-                                foreach ($profesore as $key => $value){                       
+                                    foreach ($profesore as $key => $value){                       
                             ?>
                             <tr >
                                 <td> <?php echo $value["nombreP"] ?></td>    
