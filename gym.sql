@@ -66,8 +66,8 @@ INSERT INTO `especialidades` (`id_especialidad`, `especialidades`) VALUES
 -- Estructura de tabla para la tabla `estadoentrenador`
 --
 
-CREATE TABLE `estadoprofesor` (
-  `id_estadoprofesores` int(11) NOT NULL,
+CREATE TABLE `estadoentrenador` (
+  `id_estadoEntrenador` int(11) NOT NULL,
   `estadoEntrenado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -75,7 +75,7 @@ CREATE TABLE `estadoprofesor` (
 -- Volcado de datos para la tabla `estadoprofesores`
 --
 
-INSERT INTO `estadoprofesores` (`id_estadoprofesores`, `estadoEntrenado`) VALUES
+INSERT INTO `estadoentrenador` (`id_estadoEntrenador`, `estadoEntrenado`) VALUES
 (1, 1),
 (2, 0);
 

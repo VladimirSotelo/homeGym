@@ -38,7 +38,7 @@
     </head>
 
     <!-- body start -->
-    <body data-menu-color="dark" data-sidebar="default">
+    <body data-menu-color="dark" data-sidebar="default" >
 
         <!-- Begin page -->
         <div id="app-layout">
