@@ -19,8 +19,6 @@
                             <tr>
                                 <th>Especialidad</th>
                                 <th>Entrenador</th>
-                                <th>DNI</th>
-                                <th>Plan de Entrenaminto</th>
                                 <th>Descripcion</th>
                                 <th>Acciones</th>
 
@@ -35,7 +33,6 @@
                                 <tr>
                                     <td> <?php echo $value["especialidades"] ?></td>
                                     <td> <?php echo $value["entrenador"] ?></td>
-                                    <td> <?php echo $value["nombrePlan"] ?></td>
                                     <td><?php echo $value["descripcion"] ?></td>
                                     <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                                 </tr>

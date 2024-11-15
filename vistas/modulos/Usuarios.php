@@ -20,6 +20,7 @@
                                 <th>Nombre usuario</th>    
                                 <th>Nombre </th>
                                 <th>Apellido</th>
+                                <th>Email</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                                 
@@ -35,6 +36,7 @@
                                 <td> <?php echo $value["nombreUsuario"] ?></td>    
                                 <td> <?php echo $value["nombreCliente"] ?></td>
                                 <td> <?php echo $value["apellidoCliente"] ?></td>
+                                <td><?php echo $value["email"]?></td>
                                 <td> <?php echo $value["estadoMempresia"] ?></td>
                                 <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                             </tr>

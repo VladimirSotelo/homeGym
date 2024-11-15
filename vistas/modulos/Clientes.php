@@ -20,13 +20,14 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>DNI</th>
-                                <th>Fecha Nacimiento</th>
                                 <th>Plan de Entrenaminto</th>
-                                <th>Direccion</th>
-                                <th>telefono</th>
-                                <th>Email</th>
                                 <th>Fecha de inscripcion</th>
-                                <th>Estado de Mempresia </th>
+                                <th>telefono</th>
+                                <th>Estado</th>
+                                <th>Direccion</th>
+                                <th>Usuario</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Email</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -37,16 +38,17 @@
                             foreach ($cliente as $key => $value) {
                             ?>
                                 <tr>
-                                    <td><?php echo $value["nombreCliente"]; ?></td>
-                                    <td><?php echo $value["apellidoCliente"]; ?></td>
-                                    <td><?php echo $value["dni"]; ?></td>
-                                    <td><?php echo Funciones::cambiaFormatoFecha($value["fechaNacimiento"]); ?></td>
-                                    <td><?php echo $value["nombrePlan"]; ?> </td>
-                                    <td><?php echo $value["direccion"]; ?> </td>
-                                    <td><?php echo $value["telefono"]; ?> </td>
-                                    <td><?php echo $value["email"]; ?> </td>
+                                    <td><?php echo $value["nombre"]; ?></td>
+                                    <td><?php echo $value["apellido"]; ?></td>
+                                    <td><?php echo $value["dni"]; ?> </td>
+                                    <td><?php echo $value["nombrePlan"] ?></td>
                                     <td><?php echo Funciones::cambiaFormatoFecha($value["fechaInscripcion"]); ?></td>
+                                    <td><?php echo $value["telefono"]; ?> </td>
                                     <td><?php echo $value["estadoMempresia"]; ?></td>
+                                    <td><?php echo $value["direccion"]; ?> </td>
+                                    <td><?php echo $value["usuario"]?></td>
+                                    <td><?php echo Funciones::cambiaFormatoFecha($value["fechaNacimiento"]); ?></td>
+                                    <td><?php echo $value["email"]; ?> </td>
                                     <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                                 </tr>
 

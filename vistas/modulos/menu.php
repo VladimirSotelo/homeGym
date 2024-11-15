@@ -38,7 +38,7 @@
                             <li>
                                 <a style="text-decoration:none" href="entrenadores">
                                     <i class="fa-solid fa-briefcase"></i>
-                                    <span> Entrenadores </span>
+                                    <span> Profesores </span>
                                 </a>
                             </li>
 

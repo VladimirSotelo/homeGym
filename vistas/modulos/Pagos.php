@@ -1,12 +1,12 @@
 <div class="container-xxl">
     <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
         <div class="flex-grow-1">
-            <h4 class="fs-22 fw-bold m-0">Usuarios</h4>
+            <h4 class="fs-22 fw-bold m-0">Pagos</h4>
         </div>
     </div>
     <div class="py-2 d-flex align-items-sm-center flex-sm-row flex-column">
         <div class="d-flex flex-wrap gap-2">
-            <a href="nuevo_usuario" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Nuevo Usuario</a>
+            <a href="nuevo_usuario" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Nuevo Pago</a>
         </div>
     </div>
 
