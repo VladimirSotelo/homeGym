@@ -25,7 +25,7 @@
                                 <th>telefono</th>
                                 <th>Estado</th>
                                 <th>Direccion</th>
-                                <th>Usuario</th>
+                                <th>Nº Usuario</th>
                                 <th>Fecha Nacimiento</th>
                                 <th>Email</th>
                                 <th>Acciones</th>
@@ -44,12 +44,21 @@
                                     <td><?php echo $value["nombrePlan"] ?></td>
                                     <td><?php echo Funciones::cambiaFormatoFecha($value["fechaInscripcion"]); ?></td>
                                     <td><?php echo $value["telefono"]; ?> </td>
-                                    <td><?php echo $value["estadoMempresia"]; ?></td>
+
+                                    <?php if ($value["id_EstadoMembresia"] == 1) {
+                                        ?><td><?php echo "Activo"; ?></td>
+                                        <?php } else {?>
+                                            <td><?php echo "Inactivo";
+                                        } ?></td>
+
                                     <td><?php echo $value["direccion"]; ?> </td>
-                                    <td><?php echo $value["usuario"]?></td>
+
+                                    <td><?php echo $value["id_Usuario"] ?></td>
                                     <td><?php echo Funciones::cambiaFormatoFecha($value["fechaNacimiento"]); ?></td>
                                     <td><?php echo $value["email"]; ?> </td>
-                                    <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                                    <td><a href="editar_cliente" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="eliminar_cliente" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                    </td>
                                 </tr>
 
                             <?php } ?>

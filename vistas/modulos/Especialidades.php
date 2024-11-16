@@ -18,8 +18,8 @@
                         <thead>
                             <tr>
                                 <th>Especialidad</th>
-                                <th>Entrenador</th>
-                                <th>Descripcion</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
                                 <th>Acciones</th>
 
                             </tr>
@@ -31,9 +31,9 @@
                             foreach ($usuario as $key => $value) {
                             ?>
                                 <tr>
-                                    <td> <?php echo $value["especialidades"] ?></td>
-                                    <td> <?php echo $value["entrenador"] ?></td>
-                                    <td><?php echo $value["descripcion"] ?></td>
+                                    <td> <?php echo $value["especialidad"] ?></td>
+                                    <td> <?php echo $value["apellido"] ?></td>
+                                    <td> <?php echo $value["nombre"] ?></td>
                                     <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                                 </tr>
 

@@ -7,8 +7,8 @@ class ModeloUsuarios{
     {
         
         try {
-            $usuarios = conexion::conectar()->prepare("SELECT * FROM usuarios AS u INNER JOIN clientes as C ON C.id_usuario = U.id_usuarios 
-                INNER JOIN planentrenamiento AS pe on pe.id_planEntrenamiento = c.id_planEntrenamiento");
+            $usuarios = conexion::conectar()->prepare("SELECT * FROM usuarios AS u INNER JOIN clientes as C ON C.id_usuario = U.id_Usuario
+                INNER JOIN plan_entrenamiento AS pe on pe.id_planEntrenamiento = c.id_planEntrenamiento;");
             $usuarios->execute();
 
             return $usuarios->fetchAll(PDO::FETCH_ASSOC);

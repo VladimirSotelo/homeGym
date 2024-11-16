@@ -3,7 +3,7 @@ require_once 'conexion.php';
 class ModeloEspecialidades{
     static public function mdlMostrarEspecialidad(){
         try {
-            $especialidad = conexion::conectar()->prepare("SELECT e.*,CONCAT(en.apellidoEntrenador,',',en.nombreEntrenador)as entrenador,Pe.* FROM especialidades as e INNER JOIN entrenadores as en on en.id_especialidades= e.id_especialidades INNER JOIN planentrenamiento as Pe ON pe.id_entrenador= en.id_entrenador");
+            $especialidad = conexion::conectar()->prepare("SELECT GROUP_CONCAT(e.especialidad) as especialidad, p.* FROM especialidades as e INNER JOIN especialidades_entrenadores as Ep on Ep.id_Especialidad = e.Id_Especialidad INNER JOIN profesores as p on p.id_Profesor = Ep.id_Profesor Group by p.id_Profesor");
             $especialidad->execute();
 
             return $especialidad->fetchAll(PDO::FETCH_ASSOC);
@@ -13,3 +13,6 @@ class ModeloEspecialidades{
         
     }
 }
+
+
+//
