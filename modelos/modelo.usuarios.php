@@ -7,18 +7,15 @@ class ModeloUsuarios{
     {
         
         try {
-            $usuarios = conexion::conectar()->prepare("SELECT * FROM usuarios AS u INNER JOIN clientes as C ON C.id_usuario = U.id_usuarios 
-                INNER JOIN planentrenamiento AS pe on pe.id_planEntrenamiento = c.id_planEntrenamiento");
+            $usuarios = conexion::conectar()->prepare("SELECT * from clientes as c, usuarios as u, profesores as p where c.id_Usuario = u.id_Usuario or p.id_Usuario = u.id_Usuario");
             $usuarios->execute();
 
             return $usuarios->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             return "Error: " . $e->getMessage();
         }
-       
+        
     }
-    
-
 
     static public function mdlBuscarUsuario($usuario, $valor)
     {

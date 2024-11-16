@@ -6,7 +6,7 @@ class ControladorPagos
 
     static public function crtMostrarPagos()
     {
-        $respuesta = ModeloPago::mdlMostrasPagos();
+        $respuesta = ModeloPago::mdlMostrarPagos();
         return $respuesta;
     }
 }

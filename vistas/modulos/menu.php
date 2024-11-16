@@ -62,7 +62,7 @@
                             </li>
                             <li>
                                 <a style="text-decoration:none" href="pagos">
-                                    <i class="fa-solid fa-list"></i>
+                                    <i class="fa-solid fa-money-bill"></i>
                                     <span> Pagos </span>
                                 </a>
                             </li>

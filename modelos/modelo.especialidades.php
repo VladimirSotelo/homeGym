@@ -3,7 +3,7 @@ require_once 'conexion.php';
 class ModeloEspecialidades{
     static public function mdlMostrarEspecialidad(){
         try {
-            $especialidad = conexion::conectar()->prepare("SELECT e.*,CONCAT(en.apellidoEntrenador,',',en.nombreEntrenador)as entrenador,Pe.* FROM especialidades as e INNER JOIN entrenadores as en on en.id_especialidades= e.id_especialidades INNER JOIN planentrenamiento as Pe ON pe.id_entrenador= en.id_entrenador");
+            $especialidad = conexion::conectar()->prepare("SELECT * FROM especialidades as e, profesores as p, especialidades_profesores as ep WHERE ep.id_Profesor = p.id_Profesor and ep.id_Especialidad = e.id_Especialidad;");
             $especialidad->execute();
 
             return $especialidad->fetchAll(PDO::FETCH_ASSOC);
