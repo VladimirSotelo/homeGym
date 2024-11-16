@@ -52,7 +52,7 @@ $(document).on("click", ".btnVolver", function () {
       confirmButtonText: "Sí, salir",
   }).then(function (result) {
       if (result.isConfirmed) {
-        window.location = 'index.php?pagina='+pag;
+        window.location = pag;
       }
   });
 });
