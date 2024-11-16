@@ -7,11 +7,7 @@ class ModeloEntrenadores{
     {
         
         try {
-            $profesor = conexion::conectar()->prepare("SELECT e.telefono,e.dni,e.email,e.fechaContratacion,
-            CONCAT(e.apellidoEntrenador,' ',e.nombreEntrenador) as entrenador,especialidades.*,ee.* 
-            from entrenadores as e 
-            inner join especialidades on especialidades.id_especialidades = e.id_especialidades 
-            INNER JOIN estadoentrenador as ee on ee.id_estadoEntrenador = e.id_estadoEntrenador");
+            $profesor = conexion::conectar()->prepare("SELECT * from clientes as c, usuarios as u where c.id_Usuario = u.id_Usuario");
             $profesor->execute();
 
             return $profesor->fetchAll(PDO::FETCH_ASSOC);
@@ -25,7 +21,7 @@ class ModeloEntrenadores{
 
 //agregar registro 
 
-// class agragar{
+// class agregar{
 
 //     static public function mdlAgregarDatos($tabla, $datos)
 //     {

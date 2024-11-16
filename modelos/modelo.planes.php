@@ -5,7 +5,7 @@ class ModeloPlanes
     static public function mdlMostrarPlanes()
     {
         try {
-            $plan = conexion::conectar()->prepare("SELECT p.*,CONCAT(e.apellidoEntrenador,' ',e.nombreEntrenador) as entrenador FROM planentrenamiento as p INNER JOIN entrenadores as e on e.id_entrenador=p.id_entrenador");
+            $plan = conexion::conectar()->prepare("SELECT * FROM plan_entrenamiento as pe, profesores as p, usuarios as u where p.id_Profesor = pe.id_Profesor and p.id_Usuario = u.id_Usuario");
             $plan->execute();
 
             return $plan->fetchAll(PDO::FETCH_ASSOC);
