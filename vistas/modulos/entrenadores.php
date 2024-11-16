@@ -33,13 +33,15 @@
                             foreach ($entrenador as $key => $value) {
                             ?>
                                 <tr>
-                                    <td> <?php echo $value["entrenador"] ?></td>
+                                    <td> <?php echo $value["apellido"] . ", " . $value["nombre"]  ?></td>
                                     <td> <?php echo $value["dni"] ?></td>
                                     <td> <?php echo $value["telefono"] ?></td>
                                     <td> <?php echo $value["email"] ?></td>
                                     <td> <?php echo $value["especialidades"] ?></td>
                                     <td> <?php echo Funciones::cambiaFormatoFecha($value["fechaContratacion"]) ?></td>
-                                    <td> <?php echo $value["estadoEntrenador"] ?></td>
+                                    <td> <?php 
+                                        echo $value["estadoEntrenador"] 
+                                    ?></td>
                                     <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                                 </tr>

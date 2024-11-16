@@ -29,7 +29,7 @@
                         </thead>
                         <!--los pagos de la membresía mensual deben ser registrados con la información del cliente,
                         fecha de pago, monto pagado, método de pago (efectivo, tarjeta de crédito, transferencia bancaria), a
-                        que clase pertenece, y el estado del pago (completado o pendiente).-->
+                        que clase pertenece, y el estado del pago (completado = 1 o pendiente = 0).-->
                         <tbody>
                             <?php
                             $pagos = ControladorPagos::crtMostrarPagos();
@@ -43,7 +43,8 @@
                                     <td> <?php echo $value["metodoPago"] ?></td>
                                     <td> <?php echo $value["nombrePlan"] ?></td>
                                     <td> <?php echo $value["estadoPago"] ?></td>
-                                    <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                                    <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> 
+                                    <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                                 </tr>
 
                             <?php } ?>

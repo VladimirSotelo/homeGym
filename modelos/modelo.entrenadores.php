@@ -7,7 +7,9 @@ class ModeloEntrenadores{
     {
         
         try {
-            $profesor = conexion::conectar()->prepare("SELECT * from clientes as c, usuarios as u where c.id_Usuario = u.id_Usuario");
+            $profesor = conexion::conectar()->prepare("SELECT *
+            from profesores as p, usuarios as u, especialidades as e, especialidades_profesores as ep 
+            where p.id_Usuario = u.id_Usuario and e.id_Especialidad = ep.id_Especialidad and p.id_Profesor = ep.id_Profesor");
             $profesor->execute();
 
             return $profesor->fetchAll(PDO::FETCH_ASSOC);
