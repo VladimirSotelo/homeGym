@@ -19,7 +19,7 @@
                             <tr>
                                 <th>Planes</th>
                                 <th>Codigo</th>
-                                <th>Entrenador</th>
+                                <th>Profesor</th>
                                 <th>Descripcion</th>
                                 <th>Duracion en semanas</th>
                                 <th>Sesiones por semana</th>
@@ -34,12 +34,12 @@
                             foreach ($plan as $key => $value) {
                             ?>
                                 <tr>
-                                    <td> <?php echo $value["nombrePlan"] ?></td>
-                                    <td><?php echo $value["codigo"] ?></td>
-                                    <td> <?php echo $value["entrenador"] ?></td>
+                                    <td> <?php echo $value["nombrePlan"]?></td>
+                                    <td><?php echo $value["id_PlanEntrenamiento"] ?></td>
+                                    <td> <?php echo $value["profesor"] ?></td>
                                     <td><?php echo $value["descripcion"] ?></td>
-                                    <td> <?php echo $value["duracionPlan"] ?></td>
-                                    <td> <?php echo $value["cantidadSesionesSemana"] ?></td>
+                                    <td> <?php echo $value["duracion"] ?></td>
+                                    <td> <?php echo $value["cantSesionesSemanales"] ?></td>
                                     <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                                 </tr>
 

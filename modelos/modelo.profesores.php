@@ -1,9 +1,9 @@
 <?php
 //MOSTRAR DATOS*/
 require_once 'conexion.php';
-class ModeloEntrenadores{
+class ModeloProfesores{
 
-    static public function mdlMostrarEntrenadores()
+    static public function mdlMostrarProfesores()
     {
         
         try {

@@ -68,7 +68,7 @@ $url = ControladorPlantilla::url();
                         // Agentes
                         $rutas[0] == "usuarios" ||
 
-                        $rutas[0] == "entrenadores" ||
+                        $rutas[0] == "profesores" ||
 
                         $rutas[0] == "clientes" ||
                         $rutas[0] == "nuevo_cliente"||

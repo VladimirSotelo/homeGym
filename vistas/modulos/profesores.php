@@ -1,7 +1,7 @@
 <div class="container-xxl">
     <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
         <div class="flex-grow-1">
-            <h4 class="fs-22 fw-bold m-0">Entrenadores</h4>
+            <h4 class="fs-22 fw-bold m-0">Profesores</h4>
         </div>
     </div>
     <div class="py-2 d-flex align-items-sm-center flex-sm-row flex-column">
@@ -17,7 +17,7 @@
                     <table id="tablaES" class="table table-striped dt-responsive nowrap w-100">
                         <thead>
                             <tr>
-                                <th>Entrenador</th>
+                                <th>Profesor</th>
                                 <th>DNI</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $entrenador = ControladorEntrenador::crtMostrarEntrenador();
+                            $entrenador = ControladorProfesores::crtMostrarProfesor();
                             //print_r($profesore);
                             foreach ($entrenador as $key => $value) {
                             ?>

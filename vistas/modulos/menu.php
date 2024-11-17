@@ -36,7 +36,7 @@
                             </li>
 
                             <li>
-                                <a style="text-decoration:none" href="entrenadores">
+                                <a style="text-decoration:none" href="profesores">
                                     <i class="fa-solid fa-briefcase"></i>
                                     <span> Profesores </span>
                                 </a>

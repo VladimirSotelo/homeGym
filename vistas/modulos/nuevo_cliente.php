@@ -1,8 +1,3 @@
-<?php
-$cliente = ControladorUsuarios::crtMostrarUsuarios();
-
-?>
-
 <form method="POST">
 
     <div class="py-3 d-flex align-item-sm-center flex-sm-ron flex-columm">
@@ -20,7 +15,7 @@ $cliente = ControladorUsuarios::crtMostrarUsuarios();
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row g-2">
-                                
+
                                 <div class="col-md">
                                     <label for="" class="form-label">Nombre</label>
                                     <input type="text" id="" class="form-control" value="<?= $_POST["nombre"] ?? '' ?>" required>
@@ -42,7 +37,7 @@ $cliente = ControladorUsuarios::crtMostrarUsuarios();
                                     <label for="example-email" class="form-label">Telefono</label>
                                     <input type="number" id="example-email" name="example-email" class="form-control" placeholder="telefono" value="<?= $_POST["telefono"] ?? ''  ?>" required>
                                 </div>
-                                
+
                             </div>
 
                         </div>
@@ -66,13 +61,15 @@ $cliente = ControladorUsuarios::crtMostrarUsuarios();
                             <div class="col-md" -->
 
                                 <label for="" class="form-label">Plan de Entrenamiento</label>
-                                <select class="form-select"  id="planes">
-                                    <?php foreach ($cliente as $key => $value) { ?>
+                                <select class="form-select" id="planes">
+                                    <?php
+                                    $plan = controladorPlanes::crtMostrarPlanes();
+                                    foreach ($plan as $key => $value) { ?>
 
                                         <option id="<?php echo $value["id_PlanEntrenamiento"] ?>"><?php echo $value["nombrePlan"] ?></option>
                                     <?php } ?>
                                 </select>
-                                
+
 
                             </div>
                         </div>
@@ -89,13 +86,15 @@ $cliente = ControladorUsuarios::crtMostrarUsuarios();
                 <div class="col-lg-6">
                     <div class="px-2 py-2 d-flex align-items-sm-center flex-sm-row flex-column">
                         <div class="d-flex flex-wrap gap-2">
+                            <form action="clientes">
                             <button type="button" class="btn btn-outline-dark btnVolver" pag="clientes"><i class="fa-solid fa-caret-left"></i> &nbsp; Cancelar</button>
                             <button type="button" class="btn btn-primary btnGuardar"><i class="fa-solid fa-floppy-disk"></i> &nbsp; Guardar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            
-        
+
+
 </form>
