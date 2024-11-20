@@ -65,20 +65,37 @@ $url = ControladorPlantilla::url();
                 if (isset($_GET["pagina"])) {
                     $rutas = explode('/', $_GET["pagina"]);
                     if (
-                        // Agentes
+                        // Usuarios
                         $rutas[0] == "usuarios" ||
+                        $rutas[0] == "nuevo_usuario" ||
+                        $rutas[0] == "editar_usuario" ||
 
+                        // Profesores
                         $rutas[0] == "profesores" ||
+                        $rutas[0] == "nuevo_profesor" ||
+                        $rutas[0] == "editar_profesor" ||
 
+                        // Clientes
                         $rutas[0] == "clientes" ||
                         $rutas[0] == "nuevo_cliente"||
+                        $rutas[0] == "editar_cliente"||
 
+                        // Especialidades
                         $rutas[0] == "especialidades" ||
+                        $rutas[0] == "nueva_especialidad" ||
+                        $rutas[0] == "editar_especialidad" ||
 
+                        // Planes
                         $rutas[0] == "planes" ||
+                        $rutas[0] == "nuevo_plan" ||
+                        $rutas[0] == "editar_plan" ||
 
+                        // Pagos
                         $rutas[0] == "pagos" ||
+                        $rutas[0] == "nuevo_pago" ||
+                        $rutas[0] == "editar_pago" ||
 
+                        // Login
                         $rutas[0] == "login"
 
 

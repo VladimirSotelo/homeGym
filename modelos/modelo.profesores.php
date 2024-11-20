@@ -7,9 +7,26 @@ class ModeloProfesores{
     {
         
         try {
-            $profesor = conexion::conectar()->prepare("SELECT *
-            from profesores as p, usuarios as u, especialidades as e, especialidades_profesores as ep 
-            where p.id_Usuario = u.id_Usuario and e.id_Especialidad = ep.id_Especialidad and p.id_Profesor = ep.id_Profesor");
+            $profesor = conexion::conectar()->prepare("SELECT 
+                p.id_Profesor,
+                u.nombre,
+                u.apellido,
+                u.dni,
+                u.telefono,
+                u.email,
+                p.fechaContratacion,
+                p.estado as estadoEntrenador,
+                GROUP_CONCAT(e.especialidad SEPARATOR ', ') AS especialidades
+            FROM 
+                profesores AS p
+            JOIN 
+                usuarios AS u ON p.id_Usuario = u.id_Usuario
+            JOIN 
+                especialidades_profesores AS ep ON p.id_Profesor = ep.id_Profesor
+            JOIN 
+                especialidades AS e ON ep.id_Especialidad = e.id_Especialidad
+            GROUP BY 
+                p.id_Profesor, p.fechaContratacion, p.estado;");
             $profesor->execute();
 
             return $profesor->fetchAll(PDO::FETCH_ASSOC);
