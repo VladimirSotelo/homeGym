@@ -6,7 +6,7 @@
     </div>
     <div class="py-2 d-flex align-items-sm-center flex-sm-row flex-column">
         <div class="d-flex flex-wrap gap-2">
-            <a href="nuevo_cliente" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Nuevo Clientes</a>
+            <a href="<?php echo $url; ?>nuevo_cliente" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Nuevo Clientes</a>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $cliente = controladorCliente::crtMostrarCliente();
+                            $cliente = controladorCliente::crtMostrarCliente(null, null);
                             //print_r($profesore);
                             foreach ($cliente as $key => $value) {
                             ?>
@@ -46,26 +46,26 @@
                                     <td><?php echo $value["telefono"]; ?> </td>
 
                                     <?php if ($value["id_EstadoMembresia"] == 1) {
-                                        ?><td><?php echo "Activo"; ?></td>
-                                        <?php } else {?>
-                                            <td><?php echo "Inactivo";
+                                    ?><td><?php echo "Activo"; ?></td>
+                                    <?php } else { ?>
+                                        <td><?php echo "Inactivo";
                                         } ?></td>
 
-                                    <td><?php echo $value["direccion"]; ?> </td>
+                                        <td><?php echo $value["direccion"]; ?> </td>
 
-                                    <td><?php echo $value["id_Usuario"] ?></td>
-                                    <td><?php echo Funciones::cambiaFormatoFecha($value["fechaNacimiento"]); ?></td>
-                                    <td><?php echo $value["email"]; ?> </td>
-                                    <td><a href="editar_cliente" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <a href="eliminar_cliente" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-                                    </td>
+                                        <td><?php echo $value["id_Usuario"] ?></td>
+                                        <td><?php echo Funciones::cambiaFormatoFecha($value["fechaNacimiento"]); ?></td>
+                                        <td><?php echo $value["email"]; ?> </td>
+                                        <td><a href="editar_cliente/<?php echo $value["id_Cliente"] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="eliminar_cliente" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                        </td>
                                 </tr>
 
                             <?php } ?>
 
                         </tbody>
                     </table>
-
+                    <input type="hidden" id="url" value="<?php echo $url; ?>">
                 </div>
 
             </div>

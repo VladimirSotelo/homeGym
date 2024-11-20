@@ -21,7 +21,7 @@ $(document).on("click", ".btnEliminarAgente", function () {
 
 $(document).on("click", ".btnGuardar", function (e) {
   e.preventDefault(); // Previene el envío automático del formulario
-
+   
   Swal.fire({
       title: "¿Está seguro que desea guardar?",
       text: "Confirme si desea guardar los cambios.",
@@ -34,7 +34,8 @@ $(document).on("click", ".btnGuardar", function (e) {
   }).then(function (result) {
       if (result.isConfirmed) {
           // Enviar el formulario manualmente si se confirma
-          $("form").submit();
+        $("form").submit();
+        
       }
   });
 });

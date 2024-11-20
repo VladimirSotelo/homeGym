@@ -1,8 +1,8 @@
 <?php
 
 class controladorCliente{
-    static public function crtMostrarCliente(){
-        $respuesta = ModeloClientes::mdlMostrarClientes();
+    static public function crtMostrarCliente($clientes,$valor){
+        $respuesta = ModeloClientes::mdlMostrarClientes($clientes, $valor);
         return $respuesta;
     }
 
@@ -23,15 +23,20 @@ class controladorCliente{
                 }
             }
             $datos = array(
+                "dni" => htmlspecialchars($_POST["dni"]),
                 "apellido" => htmlspecialchars($_POST["apellido"]),
                 "nombre" => htmlspecialchars($_POST["nombre"]),
-                "dni" => htmlspecialchars($_POST["fechaNacimiento"]),
-                "telefono" => htmlspecialchars($_POST["email"]),
-                "direccion" => htmlspecialchars($_POST["telefono"]),
-                "email" => htmlspecialchars($_POST["fechaInscripcion"]),
-                "usuario" => htmlspecialchars($_POST["nombrePlan"])
+                "fechaNacimiento" => htmlspecialchars($_POST["fechaNacimiento"]),
+                "direccion" => htmlspecialchars($_POST["direccion"]),
+                "telefono" => htmlspecialchars($_POST["telefono"]),
+                
+                "email" => htmlspecialchars($_POST["email"]),
+                "usuario" => htmlspecialchars($_POST["usuario"]),
+                "fechaInscripcion" => htmlspecialchars($_POST["fechaInscripcion"])
+                
 
             );
+
 
             // print_r($datos);
 
@@ -67,15 +72,17 @@ class controladorCliente{
     {
         if (isset($_POST["id_Cliente"])) {
             $datos = array(
+                "dni" => htmlspecialchars($_POST["dni"]),
                 "apellido" => htmlspecialchars($_POST["apellido"]),
                 "nombre" => htmlspecialchars($_POST["nombre"]),
-                "dni" => htmlspecialchars($_POST["dni"]),
-                "telefono" => htmlspecialchars($_POST["telefono"]),
+                "fechaNacimiento" => htmlspecialchars($_POST["fechaNacimiento"]),
                 "direccion" => htmlspecialchars($_POST["direccion"]),
+                "telefono" => htmlspecialchars($_POST["telefono"]),
+
                 "email" => htmlspecialchars($_POST["email"]),
                 "usuario" => htmlspecialchars($_POST["usuario"]),
-                "id_Cliente" => htmlspecialchars($_POST["id_Cliente"])
-
+                "fechaInscripcion" => htmlspecialchars($_POST["fechaInscripcion"]),
+                
             );
 
             $url = ControladorPlantilla::url() . "clientes";
