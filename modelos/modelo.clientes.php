@@ -32,7 +32,7 @@ class ModeloClientes
     static public function mdlAgregarCliente($datos)
     {
         try {
-            // SELECT * FROM `agentes`, `roles`  WHERE agentes.id_Rol = roles.id_Rol;
+            
             $stmt = Conexion::conectar()->prepare("INSERT INTO clientes (dni,nombre, apellio,fechaNacimiento , direccion,telefono , email, usuario, fechaInscripcion, ) VALUES (:dni,:nombre, :apellio,:fechaNacimiento , :direccion,:telefono , :email, :usuario, :fechaInscripcion,)");
 
             $stmt->bindParam(":dni", $datos["dni"], PDO::PARAM_INT);
