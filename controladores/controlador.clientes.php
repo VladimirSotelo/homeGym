@@ -62,4 +62,42 @@ class controladorCliente{
         } else { /*print_r("not post");*/
         }
     }
+
+    public function ctrEditarCliente()
+    {
+        if (isset($_POST["id_Cliente"])) {
+            $datos = array(
+                "apellido" => htmlspecialchars($_POST["apellido"]),
+                "nombre" => htmlspecialchars($_POST["nombre"]),
+                "dni" => htmlspecialchars($_POST["dni"]),
+                "telefono" => htmlspecialchars($_POST["telefono"]),
+                "direccion" => htmlspecialchars($_POST["direccion"]),
+                "email" => htmlspecialchars($_POST["email"]),
+                "usuario" => htmlspecialchars($_POST["usuario"]),
+                "id_Cliente" => htmlspecialchars($_POST["id_Cliente"])
+
+            );
+
+            $url = ControladorPlantilla::url() . "clientes";
+            $respuesta = ModeloClientes::mdlEditarClientes($datos);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+                    fncSweetAlert(
+                    "success",
+                    "El agente ' . htmlspecialchars($_POST["apellido"]) . ', ' . htmlspecialchars($_POST["nombre"]) . ' se actualizó correctamente",
+                    "' . $url . '"
+                    );
+                    </script>';
+            } else {
+                echo "<script>
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudieron actualizar los datos del agente.',
+                    icon: 'error'
+                });
+                </script>";
+            }
+        }
+    }
 }
