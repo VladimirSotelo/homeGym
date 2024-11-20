@@ -1,27 +1,43 @@
-$(document).on("click", ".btnEliminarAgente", function () {
-  let id_agente = $(this).attr("id_Agente");
-  let nombre_completo = $(this).attr("nombre_completo");
+$(".btnGuardar").on("click", function (e) {
+  // Previene el envío automático del formulario
+  e.preventDefault();
 
-  Swal.fire({
-    title: "¿Está seguro de eliminar el agente?",
-    text: nombre_completo,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "Sí, eliminar",
-  }).then(function (result) {
-    if (result.value) {
-      window.location =
-        "index.php?pagina=agentes&id_Agente_Eliminar=" + id_agente;
-    }
-  });
-});
+  // Inicializar arreglo para IDs de especialidades seleccionadas
+  let especialidadesSeleccionadas = [];
 
+<<<<<<< Updated upstream
 $(document).on("click", ".btnGuardar", function (e) {
   e.preventDefault(); // Previene el envío automático del formulario
    
+=======
+  // Verificar si existe la tabla de especialidades
+  const tabla = $("#tablaSelectMultiES").DataTable();
+  if ($.fn.DataTable.isDataTable("#tablaSelectMultiES")) {
+      // Capturar los IDs seleccionados si la tabla existe
+      tabla.rows({ selected: true }).every(function () {
+          const data = this.data();
+          especialidadesSeleccionadas.push(data[0]); // El ID está en la primera columna
+      });
+
+      // Agregar los IDs seleccionados al input oculto del formulario
+      if ($("#especialidadesSeleccionadas").length === 0) {
+          // Crear dinámicamente el input oculto si no existe
+          $("<input>")
+              .attr({
+                  type: "hidden",
+                  id: "especialidadesSeleccionadas",
+                  name: "especialidadesSeleccionadas",
+                  value: especialidadesSeleccionadas.join(","),
+              })
+              .appendTo("form");
+      } else {
+          // Si ya existe, actualizar su valor
+          $("#especialidadesSeleccionadas").val(especialidadesSeleccionadas.join(","));
+      }
+  }
+
+  // Confirmación con SweetAlert
+>>>>>>> Stashed changes
   Swal.fire({
       title: "¿Está seguro que desea guardar?",
       text: "Confirme si desea guardar los cambios.",
@@ -33,12 +49,17 @@ $(document).on("click", ".btnGuardar", function (e) {
       confirmButtonText: "Sí, guardar",
   }).then(function (result) {
       if (result.isConfirmed) {
+<<<<<<< Updated upstream
           // Enviar el formulario manualmente si se confirma
         $("form").submit();
         
+=======
+          $("form").submit(); // Enviar el formulario si se confirma
+>>>>>>> Stashed changes
       }
   });
 });
+
 
 $(document).on("click", ".btnVolver", function () {
   let pag = $(this).attr("pag"); 
@@ -72,101 +93,20 @@ $(document).on("click", ".btnPermisos", function () {
   }).then(function (result) {
       if (result.isConfirmed) {
         window.location =
-        "index.php?pagina=login";
+        "login";
       }
-  });
-});
-
-$(document).on("click", ".btnAprobarSolicSuperv", function () {
-  let pag = $(this).attr("pag"); 
-  Swal.fire({
-      title: "Solicitud Aprobada",
-      text: "La solicitud ha sido aprobada. Se enviará al administrativo.",
-      icon: "success",
-      showCancelButton: false,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "Cancelar",
-      confirmButtonText: "OK",
-  }).then(function (result) {
-      if (result.isConfirmed) {
-        window.location =
-        "index.php?pagina=solicitudesSuplente";
-      }
-  });
-});
-
-$(document).on("click", ".btnAprobarSolic", function () {
-  let pag = $(this).attr("pag"); 
-  Swal.fire({
-      title: "Solicitud Aprobada",
-      text: "La solicitud ha sido aprobada. Se agregará al listado de cargos a concursar.",
-      icon: "success",
-      showCancelButton: false,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "Cancelar",
-      confirmButtonText: "OK",
-  }).then(function (result) {
-      if (result.isConfirmed) {
-        window.location =
-        "index.php?pagina=solicitudesSuplente";
-      }
-  });
-});
-
-
-$(document).on("click", ".btnEnviarSolic", function () {
-  let pag = $(this).attr("pag"); 
-  Swal.fire({
-      title: "Solicitud Enviada",
-      text: "La solicitud ha sido enviada a la Supervisión correspondiente.",
-      icon: "success",
-      showCancelButton: false,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "Cancelar",
-      confirmButtonText: "OK",
-  }).then(function (result) {
-      if (result.isConfirmed) {
-        window.location =
-        "index.php?pagina=solicitudesSuplente";
-      }
-  });
-});
-
-$(document).on("click", ".btnEliminarZona", function () {
-   
-  let id_agente = $(this).attr("id_Agente"); 
-  let apellido = $(this).attr("apellido"); 
-  let nombre = $(this).attr("nombre"); 
-
-  Swal.fire({
-    title: "¿Está seguro de eliminar la zona de supervisión?",
-    text: "Supervisión Escolar de Zona E",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "Sí, eliminar",
-  }).then(function (result) {
-    if (result.value) {
-      window.location =
-        "index.php?pagina=zonasSupervision";
-    }
   });
 });
 
 $(document).on("click", ".btnEliminar", function () {
    
-  let id_agente = $(this).attr("id_Agente"); 
-  let apellido = $(this).attr("apellido"); 
-  let nombre = $(this).attr("nombre"); 
+  let categoria = $(this).attr("categoria"); 
+  let valorElim = $(this).attr("valorElim"); 
+  let pag = $(this).attr("pag"); 
 
   Swal.fire({
-    title: "¿Está seguro de eliminar el cargo?",
-    text: "Plaza: 324567",
+    title: "¿Está seguro de eliminar el registro?",
+    text: categoria +  ": " + valorElim,
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
@@ -176,29 +116,8 @@ $(document).on("click", ".btnEliminar", function () {
   }).then(function (result) {
     if (result.value) {
       window.location =
-        "index.php?pagina=cargos";
+        pag;
     }
   });
 });
 
-$(document).on("click", ".btnEliminarInst", function () {
-   
-  let id_institucion = $(this).attr("id_Institucion"); 
-  let institucion = $(this).attr("institucion"); 
-
-  Swal.fire({
-    title: "¿Está seguro de eliminar la institución?",
-    text: institucion,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "Sí, eliminar",
-  }).then(function (result) {
-    if (result.value) {
-      window.location =
-        "index.php?pagina=instituciones&id_Institucion_Eliminar=" + id_institucion;
-    }
-  });
-});

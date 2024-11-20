@@ -56,8 +56,8 @@
                                             <?php 
                                         }
                                     ?></td>
-                                    <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                    <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                                    <td><a href="editar_profesor/<?php echo $value["id_Profesor"] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                    <button href="eliminar_profesor" class="btn btn-danger btn-sm btnEliminar" id_Profesor = <?php echo $value["id_Profesor"]; ?> pag= "profesores" categoria = "Profesor" valorElim = "<?php echo $value['apellido'] . ', ' . $value['nombre']; ?>"><i class="fas fa-trash"></i></button></td>
                                 </tr>
 
                             <?php } ?>

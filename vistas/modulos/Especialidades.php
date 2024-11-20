@@ -18,23 +18,20 @@
                         <thead>
                             <tr>
                                 <th>Especialidad</th>
-                                <th>Apellido</th>
-                                <th>Nombre</th>
                                 <th>Acciones</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $usuario = controladorEspecialidades::crtMostrarespecialidades();
+                            $especialidades = controladorEspecialidades::crtMostrarEspecialidades();
                             /*print_r($profesore);*/
-                            foreach ($usuario as $key => $value) {
+                            foreach ($especialidades as $key => $value) {
                             ?>
                                 <tr>
                                     <td> <?php echo $value["especialidad"] ?></td>
-                                    <td> <?php echo $value["apellido"] ?></td>
-                                    <td> <?php echo $value["nombre"] ?></td>
-                                    <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                                    <td><a href="editar_especialidad/<?php echo $value["id_Especialidad"] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> 
+                                    <a href="eliminar_especialidad" class="btn btn-danger btn-sm btnEliminar" id_Especialidad = <?php echo $value["id_Especialidad"] ?> pag= "especialidades" categoria = "Especialidad" valorElim = "<?php echo $value["especialidad"] ?>"><i class="fas fa-trash"></i></a></td>
                                 </tr>
 
                             <?php } ?>

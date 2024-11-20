@@ -115,7 +115,7 @@ $especialidad = controladorEspecialidades::crtMostrarEspecialidades()
                                     <div class="col-lg-6">
                                         <h6 class="fs-15 mb-3">Fecha de Contratación</h6>
                                         <div class="form-floating mb-3">
-                                        <input type="text" class="form-control AR-datepicker" id="fechaContratacion" placeholder="Fecha de Contratacion">
+                                        <input type="text" class="form-control AR-datepicker" id="fechaContratacion" name="fechaContratacion" placeholder="Fecha de Contratacion">
                                         <label for="fechaContratacion">Fecha</label>    
                                         </div>
                                     </div>  
@@ -128,38 +128,62 @@ $especialidad = controladorEspecialidades::crtMostrarEspecialidades()
                                             </select>
                                             <label for="estado">Elegir estado</label>
                                         </div>
-                                    </div>  
-
-
+                                    </div>                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Especialidades</h5>
+                    </div><!-- end card header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="row">
                                     <div class="col-lg-12">
-                                        <h6 class="fs-15 mb-3">Especialidades</h6>
-                                        <div class="form-floating mb-3">
-                                            <select class="form-select" id="especialidad" name="especialidad" aria-label="especialidad" required>
-                                                <option selected></option>
-                                                    <?php
-                                                    foreach ($especialidad as $key => $value) {
-                                                    ?>
-                                                        <option value="<?php echo $value["Id_Especialidad"]; ?>"><?php echo $value["especialidad"];?> </option>
-                                                    <?php } ?>
-                                            </select>
-                                            <label for="especialidad">Elegir especialidades</label>
-                                        </div>
+                                        <h6 class="fs-15 mb-3">Seleccione las especialidades</h6>
+                                        <!-- Tabla de especialidades multi select  -->
+                                        <table id="tablaSelectMultiES" class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Especialidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $especialidades = controladorEspecialidades::crtMostrarEspecialidades();
+                                                foreach ($especialidades as $key => $value) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?php echo $value["Id_Especialidad"]; ?></td>    
+                                                        <td> <?php echo $value["especialidad"] ?></td>                                                        
+                                                    </tr>
+
+                                                <?php } ?>
+
+                                            </tbody>
+                                        </table>
                                     </div>                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- campo oculto para las especialidades seleccionadas -->
+                <input type="hidden" id="especialidadesSeleccionadas" name="especialidadesSeleccionadas">
 
                 <?php
-                // $guardar = new ControladorAgentes();
-                // $guardar->ctrAgregarAgente();
+                $guardar = new ControladorProfesores();
+                $guardar->ctrAgregarProfesor();
                 ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="px-2 py-2 d-flex align-items-sm-center flex-sm-row flex-column">
                             <div class="d-flex flex-wrap gap-2">
-                                <button type="button" class="btn btn-outline-dark btnVolver" pag="agentes"><i class="fa-solid fa-caret-left"></i> &nbsp; Cancelar</button>
+                                <button type="button" class="btn btn-outline-dark btnVolver" pag="profesores"><i class="fa-solid fa-caret-left"></i> &nbsp; Cancelar</button>
                                 <button type="button" class="btn btn-primary btnGuardar"><i class="fa-solid fa-floppy-disk"></i> &nbsp; Guardar</button>
                             </div>
                         </div>
