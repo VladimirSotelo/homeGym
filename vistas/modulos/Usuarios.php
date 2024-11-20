@@ -17,7 +17,7 @@
                     <table id="tablaES" class="table table-striped dt-responsive nowrap w-100">
                         <thead>
                             <tr>
-                                
+
                                 <th>Nombre usuario</th>
                                 <th>Nombre </th>
                                 <th>Apellido</th>
@@ -34,7 +34,7 @@
                             foreach ($usuario as $key => $value) {
                             ?>
                                 <tr>
-                                    
+
                                     <td> <?php echo $value["usuario"] ?></td>
                                     <td> <?php echo $value["nombre"] ?></td>
                                     <td> <?php echo $value["apellido"] ?></td>
@@ -46,8 +46,8 @@
                                         <td><?php echo "Inactivo";
                                         } ?></td>
 
-                                        <td><a href="editar_profesor" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                            <a href="eliminar_profesor" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                        <td><a href="editar_usuario" class="btn btn-warning btn-sm" pag="usuarios"><i class="fas fa-edit"></i></a>
+                                            <a href="eliminar_usuario" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                         </td>
                                         <td> <?php echo $value["id_Usuario"] ?></td>
                                 </tr>
@@ -62,5 +62,7 @@
             </div>
         </div>
     </div>
+
+    
 
 </div>

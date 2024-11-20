@@ -87,7 +87,7 @@ if ($cliente_selec) {
                                         <select class="form-select" id="estado">
                                             <?php $estado = controladorCliente::crtMostrarCliente(NULL, NULL);
                                             foreach ($estado as $key => $value) { ?>
-                                                
+
                                                 <?php if ($value["id_EstadoMembresia"] == $cliente_selec["id_EstadoMembresia"]) { ?>
                                                     <option value="activo">activo</option>
                                                 <?php } else { ?>
@@ -95,6 +95,7 @@ if ($cliente_selec) {
                                                 <?php } ?>
 
                                             <?php } ?>
+                                            <option value="inactivo">inactivo</option>
                                         </select>
 
                                     </div>
@@ -102,12 +103,8 @@ if ($cliente_selec) {
 
                                         <label for="" class="form-label">Plan de Entrenamiento</label>
                                         <select class="form-select" id="planes">
-                                            <?php
-                                            $plan = controladorPlanes::crtMostrarPlanes();
-                                            foreach ($plan as $key => $value) { ?>
+                                            <option id="<?php echo $value["id_PlanEntrenamiento"] ?>"><?php echo $value["nombrePlan"] ?></option>
 
-                                                <option id="<?php echo $value["id_PlanEntrenamiento"] ?>"><?php echo $value["nombrePlan"] ?></option>
-                                            <?php } ?>
                                         </select>
 
                                         <?php
@@ -132,7 +129,7 @@ if ($cliente_selec) {
                                     <form action="clientes">
 
                                         <button type="button" class="btn btn-outline-dark btnVolver" pag="<?php echo $url; ?>clientes"><i class="fa-solid fa-caret-left"></i> &nbsp; Cancelar</button>
-                                        <button type="button" class="btn btn-primary btnGuardar" ><i class="fa-solid fa-floppy-disk"></i> &nbsp; Guardar</button>
+                                        <button type="button" class="btn btn-primary btnGuardar"><i class="fa-solid fa-floppy-disk"></i> &nbsp; Guardar</button>
                                     </form>
                                 </div>
                             </div>

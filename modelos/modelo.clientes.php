@@ -10,9 +10,7 @@ class ModeloClientes
         if ($clientes != null) {
 
             try {
-                $stmt = Conexion::conectar()->prepare("SELECT * FROM clientes as c 
-            INNER JOIN plan_entrenamiento as pe on pe.id_PlanEntrenamiento=c.id_PlanEntrenamiento
-            INNER JOIN usuarios as u on u.id_Usuario= c.id_Usuario and $clientes = :$clientes;");
+                $stmt = Conexion::conectar()->prepare("SELECT * FROM plan_entrenamiento as pe, clientes as c INNER JOIN usuarios as u on u.id_Usuario=c.id_Usuario and $clientes = :$clientes;");
            
                 $stmt->bindParam(":" . $clientes, $valor, PDO::PARAM_INT);
                 $stmt->execute();
@@ -22,9 +20,7 @@ class ModeloClientes
             }
         } else {
             try {
-                $agentes = Conexion::conectar()->prepare("SELECT * FROM clientes as c 
-            INNER JOIN plan_entrenamiento as pe on pe.id_PlanEntrenamiento=c.id_PlanEntrenamiento
-            INNER JOIN usuarios as u on u.id_Usuario= c.id_Usuario");
+                $agentes = Conexion::conectar()->prepare("SELECT * FROM plan_entrenamiento as pe, clientes as c INNER JOIN usuarios as u on u.id_Usuario=c.id_Usuario;");
                 $agentes->execute();
                 return $agentes->fetchAll(PDO::FETCH_ASSOC);
             } catch (Exception $e) {

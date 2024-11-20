@@ -91,12 +91,8 @@
 
                                 <label for="planes" class="form-label">Plan de Entrenamiento</label>
                                 <select class="form-select" id="planes">
-                                    <?php
-                                    $plan = controladorPlanes::crtMostrarPlanes();
-                                    foreach ($plan as $key => $value) { ?>
-
-                                        <option id="<?php echo $value["id_PlanEntrenamiento"] ?>"><?php echo $value["nombrePlan"] ?></option>
-                                    <?php } ?>
+                                    <option id="<?php echo $value["id_PlanEntrenamiento"] ?>"><?php echo $value["nombrePlan"] ?></option>
+                                    
                                 </select>
 
 
