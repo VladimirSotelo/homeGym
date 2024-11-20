@@ -1,15 +1,10 @@
-$(".btnGuardar").on("click", function (e) {
+$(document).on("click", ".btnGuardar", function (e) {
   // Previene el envío automático del formulario
   e.preventDefault();
 
   // Inicializar arreglo para IDs de especialidades seleccionadas
   let especialidadesSeleccionadas = [];
 
-<<<<<<< Updated upstream
-$(document).on("click", ".btnGuardar", function (e) {
-  e.preventDefault(); // Previene el envío automático del formulario
-   
-=======
   // Verificar si existe la tabla de especialidades
   const tabla = $("#tablaSelectMultiES").DataTable();
   if ($.fn.DataTable.isDataTable("#tablaSelectMultiES")) {
@@ -37,7 +32,7 @@ $(document).on("click", ".btnGuardar", function (e) {
   }
 
   // Confirmación con SweetAlert
->>>>>>> Stashed changes
+
   Swal.fire({
       title: "¿Está seguro que desea guardar?",
       text: "Confirme si desea guardar los cambios.",
@@ -49,13 +44,9 @@ $(document).on("click", ".btnGuardar", function (e) {
       confirmButtonText: "Sí, guardar",
   }).then(function (result) {
       if (result.isConfirmed) {
-<<<<<<< Updated upstream
           // Enviar el formulario manualmente si se confirma
         $("form").submit();
-        
-=======
           $("form").submit(); // Enviar el formulario si se confirma
->>>>>>> Stashed changes
       }
   });
 });
