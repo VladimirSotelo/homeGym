@@ -26,12 +26,12 @@ class ModeloProfesores{
                     especialidades_profesores AS ep ON p.id_Profesor = ep.id_Profesor
                 JOIN 
                     especialidades AS e ON ep.id_Especialidad = e.id_Especialidad
+                WHERE
+                     $campo = :valor
                 GROUP BY 
-                    p.id_Profesor, p.fechaContratacion, p.estado
-                and
-                    p.$campo = :$campo;
-                ");
-                $stmt->bindParam(":" . $campo, $valor, PDO::PARAM_INT);
+                    p.id_Profesor, p.fechaContratacion, p.estado;");
+
+                $stmt->bindParam(":valor", $valor, PDO::PARAM_INT);
                 $stmt->execute();
                 return $stmt->fetch(PDO::FETCH_ASSOC);
 
