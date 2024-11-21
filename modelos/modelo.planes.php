@@ -8,7 +8,7 @@ class ModeloPlanes
         if ($plan != null) {
 
             try {
-                $stmt = Conexion::conectar()->prepare("SELECT pe.*, p.*, CONCAT(u.apellido,' ',u.nombre) as profesor FROM plan_entrenamiento as pe, profesores as p INNER JOIN usuarios as u on u.id_Usuario = p.id_Usuario and $plan = :$plan;");
+                $stmt = Conexion::conectar()->prepare("SELECT pe.*, p.*,u.apellido,u.nombre ,CONCAT(u.apellido,' ',u.nombre) as profesor FROM plan_entrenamiento as pe INNER JOIN profesores as p on p.id_Profesor=pe.id_Profesor INNER JOIN usuarios as u on u.id_Usuario = p.id_Usuario and $plan = :$plan;");
 
                 $stmt->bindParam(":" . $plan, $valor, PDO::PARAM_INT);
                 $stmt->execute();
@@ -27,7 +27,7 @@ class ModeloPlanes
         }
     }
     
-    
+    //SELECT pe.*, p.*, CONCAT(u.apellido,' ',u.nombre) as profesor FROM plan_entrenamiento as pe, profesores as p INNER JOIN usuarios as u on u.id_Usuario = p.id_Usuario
     
    
 
@@ -38,6 +38,7 @@ class ModeloPlanes
 
             $stmt = Conexion::conectar()->prepare("INSERT INTO plan_entrenamiento (nombrePlan,descripcion,duracion,cantSesionesSemanales,id_Profesor ) VALUES (:nombrePlan,:descripcion,:duracion,:cantSesionesSemanales,:id_Profesor)");
 
+            $stmt->bindParam(":id_PlanEntrenamiento", $datos["id_PlanEntrenamiento"], PDO::PARAM_INT);
             $stmt->bindParam(":nombrePlan", $datos["nombrePlan"], PDO::PARAM_INT);
             $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
             $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
@@ -62,12 +63,12 @@ class ModeloPlanes
             id_Profesor = :id_Profesor
             WHERE id_PlanEntrenamiento = :id_PlanEntrenamiento");
 
+            $stmt->bindParam(":id_PlanEntrenamiento", $datos["id_PlanEntrenamiento"], PDO::PARAM_INT);
             $stmt->bindParam(":nombrePlan", $datos["nombrePlan"], PDO::PARAM_INT);
             $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
             $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
-            $stmt->bindParam(":cantSesionesSemanales", $datos["cantSesionesSemanales"], PDO::PARAM_STR);
+            $stmt->bindParam(":cantSesionesSemanales", $datos["cantSesionesSemanales"], PDO::PARAM_STR); 
             $stmt->bindParam(":id_Profesor", $datos["id_Profesor"], PDO::PARAM_INT);
-            $stmt->bindParam(":id_PlanEntrenamiento", $datos["id_PlanEntrenamiento"], PDO::PARAM_INT);
 
             if ($stmt->execute()) {
                 return "ok";
