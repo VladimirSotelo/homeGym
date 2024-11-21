@@ -1,5 +1,5 @@
 <?php
-$especialidad = controladorEspecialidades::crtMostrarEspecialidades();
+$especialidad = controladorEspecialidades::crtMostrarEspecialidades(NULL, NULL);
 ?>
 
 <div class="container-xxl">
@@ -145,7 +145,7 @@ $especialidad = controladorEspecialidades::crtMostrarEspecialidades();
                                     <div class="col-lg-12">
                                         <h6 class="fs-15 mb-3">Seleccione las especialidades</h6>
                                         <!-- Tabla de especialidades multi select  -->
-                                        <table id="tablaSelectMultiES" class="table table-striped dt-responsive nowrap w-100">
+                                        <table id="tablaSelectMultiES" class="table table-striped dt-responsive nowrap w-100 tablaSelectMultiES">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -154,7 +154,7 @@ $especialidad = controladorEspecialidades::crtMostrarEspecialidades();
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $especialidades = controladorEspecialidades::crtMostrarEspecialidades();
+                                                $especialidades = controladorEspecialidades::crtMostrarEspecialidades(NULL, NULL);
                                                 foreach ($especialidades as $key => $value) {
                                                 ?>
                                                     <tr>

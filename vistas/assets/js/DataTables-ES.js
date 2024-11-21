@@ -20,7 +20,7 @@ $(document).ready(function () {
     });
 
     //tabla solo seleccion multiple
-    $('.tablaSelectMultiES').DataTable({
+    const tabla = $("#tablaSelectMultiES").DataTable({
         scrollX: true,
         select: true,
         blurable: true,
@@ -31,5 +31,15 @@ $(document).ready(function () {
         ],
         language: window.espanol
     });
+    //const especialidadesSeleccionadas = [1, 2, 3]; 
+
+    // Selecciona las filas correspondientes
+    especialidadesSeleccionadas.forEach((id) => {
+        tabla.rows((idx, data, node) => {
+            // Verifica si el ID de la especialidad coincide con la fila actual
+            return data[0] == id; // Compara el primer dato (ID) de la fila
+        }).select();
+    });
+
 });
 

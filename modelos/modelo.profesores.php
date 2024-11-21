@@ -171,6 +171,9 @@ class ModeloProfesores{
         }
     }
 
+    // ==============================================================
+    // Añadir Especialidades Profesor (para añadir profesor)
+    // ==============================================================
     static public function mdlInsertarEspecialidadesProfesor($tabla, $idProfesor, $especialidades) {
         try {
             $conexion = Conexion::conectar();
@@ -189,6 +192,35 @@ class ModeloProfesores{
         } catch (Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    // ==============================================================
+    // Obtener Especialidades de Profesor
+    // ==============================================================
+    public static function mdlObtenerEspecialidadesProfesor($tabla, $idProfesor)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT id_Especialidad FROM $tabla WHERE id_Profesor = :idProfesor");
+        $stmt->bindParam(":idProfesor", $idProfesor, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    // ==============================================================
+    // Eliminar Especialidades de Profesor
+    // ==============================================================
+    public static function mdlEliminarEspecialidadesProfesor($tabla, $idProfesor)
+    {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_Profesor = :idProfesor");
+
+        $stmt->bindParam(":idProfesor", $idProfesor, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt = null;
     }
 
 

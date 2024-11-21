@@ -1,5 +1,5 @@
 <?php
-$especialidad = controladorEspecialidades::crtMostrarEspecialidades();
+$especialidad = controladorEspecialidades::crtMostrarEspecialidades(NULL, NULL);
 $idProfesor = "p.id_Profesor";
 $valor = $rutas[1];
 
@@ -121,7 +121,11 @@ if ($profesor_selec) {
                                     <div class="col-lg-6">
                                         <h6 class="fs-15 mb-3">Fecha de Contratación</h6>
                                         <div class="form-floating mb-3">
-                                        <input type="text" class="form-control AR-datepicker" id="fechaContratacion" name="fechaContratacion" placeholder="Fecha de Contratacion" value= "<?php echo $profesor_selec["fechaContratacion"]; ?>">
+                                        <?php   
+                                        $fechaOriginal = $profesor_selec["fechaContratacion"]; // Fecha en formato Y-m-d
+                                        $fechaConvertida = DateTime::createFromFormat('Y-m-d', $fechaOriginal)->format('d-m-Y');
+                                        ?>
+                                        <input type="text" class="form-control AR-datepicker" id="fechaContratacion" name="fechaContratacion" placeholder="Fecha de Contratacion" value= "<?php echo $fechaConvertida; ?>">
                                         <label for="fechaContratacion">Fecha</label>    
                                         </div>
                                     </div>  
@@ -173,16 +177,18 @@ if ($profesor_selec) {
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $especialidades = controladorEspecialidades::crtMostrarEspecialidades();
+                                                $especialidadesProfesor = ControladorProfesores::ctrObtenerEspecialidadesProfesor($rutas[1]);
+                                                $especialidadesAsignadas = array_column($especialidadesProfesor, "id_Especialidad");
+                                                // print_r($especialidadesAsignadas);
+                                                $especialidades = controladorEspecialidades::crtMostrarEspecialidades(NULL, NULL);
                                                 foreach ($especialidades as $key => $value) {
+                                                    echo "<tr>
+                                                            <td>{$value['Id_Especialidad']}</td>
+                                                            <td>{$value['especialidad']}</td>
+                                                          </tr>";
+                                                }
+                                                
                                                 ?>
-                                                    <tr>
-                                                        <td><?php echo $value["Id_Especialidad"]; ?></td>    
-                                                        <td> <?php echo $value["especialidad"] ?></td>                                                        
-                                                    </tr>
-
-                                                <?php } ?>
-
                                             </tbody>
                                         </table>
                                     </div>                                    
@@ -193,10 +199,14 @@ if ($profesor_selec) {
                 </div>
                 <!-- campo oculto para las especialidades seleccionadas -->
                 <input type="hidden" id="especialidadesSeleccionadas" name="especialidadesSeleccionadas">
+                <!-- campo oculto para el id -->
+                <input type="hidden" name="id_Profesor" value="<?php echo $profesor_selec["id_Profesor"]; ?>">
+
+
 
                 <?php
                 $guardar = new ControladorProfesores();
-                $guardar->ctrAgregarProfesor();
+                $guardar->ctrEditarProfesor();
                 ?>
                 <div class="row">
                     <div class="col-lg-6">
@@ -217,3 +227,8 @@ if ($profesor_selec) {
     <h3>Profesor no disponible</h3>
 
 <?php } ?>
+
+<script>
+    // Pasar el array PHP como un objeto JavaScript para que seleccione las especialidades
+    const especialidadesSeleccionadas = <?php echo json_encode($especialidadesAsignadas); ?>;
+</script>

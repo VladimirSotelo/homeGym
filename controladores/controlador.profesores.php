@@ -93,46 +93,84 @@ class ControladorProfesores{
     public function ctrEditarProfesor()
     {
         if (isset($_POST["dni"])) {
-          
+            $fechaOriginal = $_POST['fechaContratacion']; // Fecha en formato dd-mm-aaaa
+            $fechaConvertida = DateTime::createFromFormat('d-m-Y', $fechaOriginal)->format('Y-m-d');
+    
+            // Actualizar en usuarios y profesores
             $datos = array(
+                "idProfesor" => htmlspecialchars($_POST["id_Profesor"]),
                 "dni" => htmlspecialchars($_POST["dni"]),
                 "nombre" => htmlspecialchars($_POST["nombre"]),
                 "apellido" => htmlspecialchars($_POST["apellido"]),
                 "email" => htmlspecialchars($_POST["email"]),
                 "telefono" => htmlspecialchars($_POST["telefono"]),
-                "contrasena" => htmlspecialchars($_POST["contrasena"]),
-                "fechaContratacion" => htmlspecialchars($_POST["fechaContratacion"]),
-                "estado" => htmlspecialchars($_POST["estado"]),
-                "id_Profesor" => htmlspecialchars($_POST["id_Profesor"])
+                "fechaContratacion" => $fechaConvertida
             );
-            
-            // print_r($datos);
-
-            // return;
-
-            //podemos volver a la página de datos
-
+    
+            // URL de redirección
             $url = ControladorPlantilla::url() . "profesores";
+            
+            // Llamar al modelo para actualizar los datos básicos del profesor
             $respuesta = ModeloProfesores::mdlEditarProfesor($datos);
-
+    
             if ($respuesta == "ok") {
-                echo '<script>
-                    fncSweetAlert(
-                    "success",
-                    "El profesor ' . htmlspecialchars($_POST["apellido"]) . ', ' . htmlspecialchars($_POST["nombre"]) . ' se actualizó correctamente",
-                    "' . $url . '"
-                    );
-                    </script>';
-            }
-            else{
+                // Obtener las especialidades seleccionadas
+                $especialidades = explode(",", $_POST["especialidadesSeleccionadas"]);
+    
+                // Eliminar las especialidades actuales del profesor
+                $respuestaEliminar = ModeloProfesores::mdlEliminarEspecialidadesProfesor("especialidades_profesores", $datos["idProfesor"]);
+    
+                if ($respuestaEliminar == "ok") {
+                    // Insertar las nuevas especialidades seleccionadas
+                    if (!empty($especialidades)) {
+                        $respuestaEspecialidades = ModeloProfesores::mdlInsertarEspecialidadesProfesor("especialidades_profesores", $datos["idProfesor"], $especialidades);
+    
+                        if ($respuestaEspecialidades == "ok") {
+                            echo '<script>
+                                fncSweetAlert(
+                                "success",
+                                "El profesor ' . htmlspecialchars($_POST["apellido"]) . ', ' . htmlspecialchars($_POST["nombre"]) . ' fue modificado correctamente",
+                                "' . $url . '"
+                                );
+                                </script>';
+                        } else {
+                            echo "<script>
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'No se pudieron actualizar las especialidades.',
+                                    icon: 'error'
+                                });
+                                </script>";
+                        }
+                    }
+                } else {
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'No se pudieron eliminar las especialidades antiguas.',
+                            icon: 'error'
+                        });
+                        </script>";
+                }
+            } else {
                 echo "<script>
-                Swal.fire({
-                    title: 'Error',
-                    text: 'No se pudieron agregar los datos del profesor.',
-                    icon: 'error'
-                });
-                </script>";
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'No se pudieron actualizar los datos del profesor.',
+                        icon: 'error'
+                    });
+                    </script>";
             }
-        } else{ /*print_r("not post");*/ }
+        }
+    }
+
+    // ==============================================================
+    // Obtener Especialidades de Profesor
+    // ==============================================================
+    public static function ctrObtenerEspecialidadesProfesor($idProfesor)
+    {
+        $tabla = "especialidades_profesores";
+        $respuesta = ModeloProfesores::mdlObtenerEspecialidadesProfesor($tabla, $idProfesor);
+        return $respuesta;
     }
 }
