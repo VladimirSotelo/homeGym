@@ -90,7 +90,6 @@ class controladorEspecialidades
     // ==============================================================
     static public function ctrEliminarEspecialidad()
     {
-     
         if (isset($_GET["id_eliminar"])) {
 
             $url = ControladorPlantilla::url() . "especialidades";

@@ -20,7 +20,7 @@ class ModeloUsuarios{
     static public function mdlBuscarUsuario($usuario, $valor)
     {
         try {
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM usuarios,clientes  WHERE usuarios.id_Usuario = clientes.id_Usuario  and $usuario = :$usuario;");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM usuarios  WHERE $usuario = :$usuario;");
             $stmt->bindParam(":" . $usuario, $valor, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

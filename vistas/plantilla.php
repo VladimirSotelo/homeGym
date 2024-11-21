@@ -45,7 +45,7 @@ $url = ControladorPlantilla::url();
 
 </head>
 
-<?php // if (isset($_SESSION["iniciarSesion"])) { ?>
+<?php  if (isset($_SESSION["iniciarSesion"])) { ?>
     <!-- body start -->
 
     <body data-menu-color="dark" data-sidebar="default">
@@ -102,6 +102,7 @@ $url = ControladorPlantilla::url();
                         $rutas[0] == "editar_pago" ||
 
                         // Login
+                        $rutas[0] == "inicio" ||
                         $rutas[0] == "login"
 
 
@@ -150,9 +151,9 @@ $url = ControladorPlantilla::url();
 
 
     </body>
-<?php // } else {
-    //include "vistas/modulos/login.php";
-//}
+<?php  } else {
+    include "vistas/modulos/login.php";
+}
 
 ?>
 
