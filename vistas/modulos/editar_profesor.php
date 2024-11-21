@@ -1,6 +1,6 @@
 <?php
 $especialidad = controladorEspecialidades::crtMostrarEspecialidades();
-$idProfesor = "id_Profesor";
+$idProfesor = "p.id_Profesor";
 $valor = $rutas[1];
 
 $profesor_selec = ControladorProfesores::crtMostrarProfesor($idProfesor, $valor);
