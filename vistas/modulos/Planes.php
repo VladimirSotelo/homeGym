@@ -19,32 +19,40 @@
                             <tr>
                                 <th>Planes</th>
                                 <th>Codigo</th>
-                                <th>Profesor</th>
                                 <th>Descripcion</th>
                                 <th>Duracion en semanas</th>
                                 <th>Sesiones por semana</th>
+                                <th>Profesor</th>
                                 <th>Acciones</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            
                             $plan = controladorPlanes::crtMostrarPlanes(null,null);
-                            //print_r($profesore);
+
                             foreach ($plan as $key => $value) {
-                            ?>
+                                
+                                $profesor = ControladorProfesores::crtMostrarProfesor(null,null);
+                                
+                                //print_r($profesor);?>
+                                <?php foreach ($profesor as $key => $profe) {?>
                                 <tr>
-                                    <td> <?php echo $value["nombrePlan"]?></td>
-                                    <td><?php echo $value["id_PlanEntrenamiento"] ?></td>
-                                    <td> <?php echo $value["profesor"] ?></td>
-                                    <td><?php echo $value["descripcion"] ?></td>
-                                    <td> <?php echo $value["duracion"] ?></td>
-                                    <td> <?php echo $value["cantSesionesSemanales"] ?></td>
+                                    <td> <?php echo $value["nombrePlan"];?></td>
+                                    <td><?php echo $value["id_PlanEntrenamiento"]; ?></td>
+                                    <td><?php echo $value["descripcion"]; ?></td>
+                                    <td> <?php echo $value["duracion"]; ?></td>
+                                    <td> <?php echo $value["cantSesionesSemanales"]; ?></td>
+                             
+                                    
+                                    <td> <?php echo $profe["apellido"] .' '. $profe["nombre"]; ?></td>
+                                    
                                     <td><a href="editar_plan/<?php echo $value["id_PlanEntrenamiento"]; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     <a href="eliminar_plan" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
-                                </tr>
+                                </tr><?php }?>
 
-                            <?php } ?>
+                            <?php  } ?>
 
                         </tbody>
                     </table>

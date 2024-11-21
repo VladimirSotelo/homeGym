@@ -10,9 +10,9 @@ class ModeloProfesores{
             try {
                 $stmt = conexion::conectar()->prepare("SELECT 
                     p.id_Profesor,
-                    u.nombre,
-                    u.apellido,
-                    u.dni,
+                    nombre,
+                    apellido,
+                    dni,
                     u.telefono,
                     u.email,
                     p.fechaContratacion,
@@ -28,8 +28,8 @@ class ModeloProfesores{
                     especialidades AS e ON ep.id_Especialidad = e.id_Especialidad
                 GROUP BY 
                     p.id_Profesor, p.fechaContratacion, p.estado
-                WHERE
-                     $campo = :$campo;
+                and
+                    p.$campo = :$campo;
                 ");
                 $stmt->bindParam(":" . $campo, $valor, PDO::PARAM_INT);
                 $stmt->execute();
@@ -43,9 +43,9 @@ class ModeloProfesores{
             try {
                 $profesor = conexion::conectar()->prepare("SELECT 
                     p.id_Profesor,
-                    u.nombre,
-                    u.apellido,
-                    u.dni,
+                    nombre,
+                    apellido,
+                    dni,
                     u.telefono,
                     u.email,
                     p.fechaContratacion,

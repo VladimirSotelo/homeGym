@@ -8,18 +8,19 @@ class controladorPlanes
         return $respuesta;
     }
 
-    public function ctrAgregarCliente()
+    public function ctrAgregarPlan()
     {
         if (isset($_POST["nombrePlan"])) {
 
             
             $datos = array(
-                "id_PlanEntrenamiento"=> htmlspecialchars($_POST["id_PlanEntrenamiento"]),
+                
                 "nombrePlan" => htmlspecialchars($_POST["nombrePlan"]),
+                //"id_PlanEntrenamiento"=> htmlspecialchars($_POST["id_PlanEntrenamiento"]),
                 "descripcion" => htmlspecialchars($_POST["descripcion"]),
-                "duracion" => htmlspecialchars($_POST["duracion"]),
-                "cantSesionesSemanales" => htmlspecialchars($_POST["cantSesionesSemanales"]),
-                "id_Profesor" => htmlspecialchars($_POST["id_Profesor"]),
+                "duracion" => intval($_POST["duracion"]),
+                "cantSesionesSemanales" => intval($_POST["cantSesionesSemanales"]),
+                "id_Profesor" => intval($_POST["id_Profesor"])
                 
 
             );
@@ -52,11 +53,13 @@ class controladorPlanes
     {
         if (isset($_POST["id_PlanEntrenamiento"])) {
             $datos = array(
+
+                "id_PlanEntrenamiento" => intval($_POST["id_PlanEntrenamiento"]),
                 "nombrePlan" => htmlspecialchars($_POST["nombrePlan"]),
                 "descripcion" => htmlspecialchars($_POST["descripcion"]),
-                "duracion" => htmlspecialchars($_POST["duracion"]),
-                "cantSesionesSemanales" => htmlspecialchars($_POST["cantSesionesSemanales"]),
-                "id_Profesor" => htmlspecialchars($_POST["id_Profesor"]),
+                "duracion" => intval($_POST["duracion"]),
+                "cantSesionesSemanales" => intval($_POST["cantSesionesSemanales"]),
+                "id_Profesor" => intval($_POST["id_Profesor"]),
             );
 
             $url = ControladorPlantilla::url() . "planes";
