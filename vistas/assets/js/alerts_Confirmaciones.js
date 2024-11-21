@@ -88,7 +88,7 @@ $(document).on("click", ".btnPermisos", function () {
 });
 
 $(document).on("click", ".btnEliminar", function () {
-   
+  let id_eliminar = $(this).attr("id_eliminar");
   let categoria = $(this).attr("categoria"); 
   let valorElim = $(this).attr("valorElim"); 
   let pag = $(this).attr("pag"); 
@@ -105,8 +105,10 @@ $(document).on("click", ".btnEliminar", function () {
   }).then(function (result) {
     if (result.value) {
       window.location =
-        pag;
+        pag + "?id_eliminar=" + id_eliminar;
     }
   });
 });
+
+
 

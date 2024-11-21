@@ -6,7 +6,7 @@ $valor = $rutas[1];
 
 $especialidad_selec = controladorEspecialidades::crtMostrarEspecialidades($idEspec, $valor);
 
-if ($profesor_selec) {
+if ($especialidad_selec) {
 ?>
 
 <div class="container-xxl">
@@ -40,7 +40,7 @@ if ($profesor_selec) {
                 </div>
 
                 <!-- campo oculto para el id -->
-                <input type="hidden" name="id_Especialidad" value="<?php echo $especialidad_selec["id_Especialidad"]; ?>">
+                <input type="hidden" name="Id_Especialidad" value="<?php echo $especialidad_selec["Id_Especialidad"]; ?>">
 
                 <?php
                 $guardar = new controladorEspecialidades();

@@ -13,23 +13,12 @@ class controladorEspecialidades
     // ==============================================================
     public function ctrAgregarEspecialidad()
     {
-        if (isset($_POST["dni"])) {
+        if (isset($_POST["especialidad"])) {
 
-            if(isset($_POST["dlInstituciones"])){
-                $id = "";
-            } else{
-                if(isset($_POST["dlZonas"])){
-                    $id = "";
-                } else{
-                    if (htmlspecialchars($_POST["id_Rol"]) == ""){
-                        $id = "";
-                    }
-                }
-            }
-            $datos = array(
-                "especialidad" => htmlspecialchars($_POST["especialidad"])
+            // $datos = array(
+            //     "especialidad" => htmlspecialchars($_POST["especialidad"])
                 
-            );
+            // );
             
             // print_r($datos);
 
@@ -38,7 +27,7 @@ class controladorEspecialidades
             //podemos volver a la página de datos
 
             $url = ControladorPlantilla::url() . "especialidades";
-            $respuesta = ModeloEspecialidades::mdlAgregarEspecialidad($datos);
+            $respuesta = ModeloEspecialidades::mdlAgregarEspecialidad(htmlspecialchars($_POST["especialidad"]));
 
             if ($respuesta == "ok") {
                 echo '<script>
@@ -66,9 +55,10 @@ class controladorEspecialidades
     // ==============================================================
     public function ctrEditarEspecialidad()
     {
-        if (isset($_POST["id_Agente"])) {
+        if (isset($_POST["Id_Especialidad"])) {
             $datos = array(
-                "especialidad" => htmlspecialchars($_POST["especialidad"])                
+                "especialidad" => htmlspecialchars($_POST["especialidad"]),  
+                "Id_Especialidad" => htmlspecialchars($_POST["Id_Especialidad"])               
             );
 
             $url = ControladorPlantilla::url() . "especialidades";
@@ -101,11 +91,12 @@ class controladorEspecialidades
     static public function ctrEliminarEspecialidad()
     {
      
-        if (isset($_GET["id_Especialidad_eliminar"])) {
+        if (isset($_GET["id_eliminar"])) {
 
             $url = ControladorPlantilla::url() . "especialidades";
             $tabla = "especialidades";
-            $dato = $_GET["id_Especialidad_eliminar"];
+            $dato = $_GET["id_eliminar"];
+            echo "ID a eliminar: " . $dato; // Depuración temporal
 
             $respuesta = ModeloEspecialidades::mdlEliminarEspecialidad($tabla, $dato);
 

@@ -8,7 +8,7 @@ class ModeloEspecialidades{
                 $especialidad->bindParam(":" . $campo, $valor, PDO::PARAM_INT);
                 $especialidad->execute();
                 
-                return $especialidad->fetchAll(PDO::FETCH_ASSOC);
+                return $especialidad->fetch(PDO::FETCH_ASSOC);
             } catch (Exception $e) {
                 return "Error: " . $e->getMessage();
             }
@@ -28,13 +28,13 @@ class ModeloEspecialidades{
     // ==============================================================
     // Agregar Especialidad
     // ==============================================================
-    static public function mdlAgregarEspecialidad($datos)
+    static public function mdlAgregarEspecialidad($dato)
     {
         try {
             $stmt = Conexion::conectar()->prepare("INSERT INTO especialidades 
             (especialidad) VALUES (:especialidad)");
 
-            $stmt->bindParam(":especialidad", $datos["apellido"], PDO::PARAM_STR);
+            $stmt->bindParam(":especialidad", $dato, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
                 return "ok";
@@ -57,8 +57,8 @@ class ModeloEspecialidades{
             especialidad = :especialidad
             WHERE Id_Especialidad = :Id_Especialidad");
 
-            $stmt->bindParam(":especialidad", $datos["apellido"], PDO::PARAM_STR);
-                            
+            $stmt->bindParam(":especialidad", $datos["especialidad"], PDO::PARAM_STR);
+            $stmt->bindParam(":Id_Especialidad", $datos["Id_Especialidad"], PDO::PARAM_INT);               
 
             if ($stmt->execute()) {
                 return "ok";

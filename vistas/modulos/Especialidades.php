@@ -31,7 +31,7 @@
                                 <tr>
                                     <td> <?php echo $value["especialidad"] ?></td>
                                     <td><a href="editar_especialidad/<?php echo $value["Id_Especialidad"] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> 
-                                    <button href="eliminar_especialidad" class="btn btn-danger btn-sm btnEliminar" id_Especialidad = <?php echo $value["Id_Especialidad"] ?> pag= "especialidades" categoria = "Especialidad" valorElim = "<?php echo $value["especialidad"] ?>"><i class="fas fa-trash"></i></button></td>
+                                    <button href="eliminar_especialidad" class="btn btn-danger btn-sm btnEliminar" id_eliminar  = <?php echo $value["Id_Especialidad"] ?> pag= "especialidades" categoria = "Especialidad" valorElim = "<?php echo $value["especialidad"] ?>"><i class="fas fa-trash"></i></button></td>
                                 </tr>
 
                             <?php } ?>
