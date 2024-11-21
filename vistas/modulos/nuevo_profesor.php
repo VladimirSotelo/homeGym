@@ -1,5 +1,5 @@
 <?php
-$especialidad = controladorEspecialidades::crtMostrarEspecialidades()
+$especialidad = controladorEspecialidades::crtMostrarEspecialidades();
 ?>
 
 <div class="container-xxl">
@@ -124,7 +124,7 @@ $especialidad = controladorEspecialidades::crtMostrarEspecialidades()
                                         <div class="form-floating mb-3">
                                             <select class="form-select" id="estado" name="estado" aria-label="estado" required>
                                                 <option selected>Activo</option>
-                                                <option >Inactivo</option>                                                    
+                                                <!-- <option >Inactivo</option> -->
                                             </select>
                                             <label for="estado">Elegir estado</label>
                                         </div>

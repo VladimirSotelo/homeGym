@@ -4,38 +4,72 @@ class ModeloProfesores{
     // ==============================================================   
     // Mostrar Profesores
     // ==============================================================
-    static public function mdlMostrarProfesores()
+    static public function mdlMostrarProfesores($campo, $valor)
     {
-        
-        try {
-            $profesor = conexion::conectar()->prepare("SELECT 
-                p.id_Profesor,
-                u.nombre,
-                u.apellido,
-                u.dni,
-                u.telefono,
-                u.email,
-                p.fechaContratacion,
-                p.estado as estadoEntrenador,
-                GROUP_CONCAT(e.especialidad SEPARATOR ', ') AS especialidades
-            FROM 
-                profesores AS p
-            JOIN 
-                usuarios AS u ON p.id_Usuario = u.id_Usuario
-            JOIN 
-                especialidades_profesores AS ep ON p.id_Profesor = ep.id_Profesor
-            JOIN 
-                especialidades AS e ON ep.id_Especialidad = e.id_Especialidad
-            GROUP BY 
-                p.id_Profesor, p.fechaContratacion, p.estado;");
-            $profesor->execute();
+        if ($campo != null) {
+            try {
+                $stmt = conexion::conectar()->prepare("SELECT 
+                    p.id_Profesor,
+                    u.nombre,
+                    u.apellido,
+                    u.dni,
+                    u.telefono,
+                    u.email,
+                    p.fechaContratacion,
+                    p.estado as estadoEntrenador,
+                    GROUP_CONCAT(e.especialidad SEPARATOR ', ') AS especialidades
+                FROM 
+                    profesores AS p
+                JOIN 
+                    usuarios AS u ON p.id_Usuario = u.id_Usuario
+                JOIN 
+                    especialidades_profesores AS ep ON p.id_Profesor = ep.id_Profesor
+                JOIN 
+                    especialidades AS e ON ep.id_Especialidad = e.id_Especialidad
+                GROUP BY 
+                    p.id_Profesor, p.fechaContratacion, p.estado
+                WHERE
+                     $campo = :$campo;
+                ");
+                $stmt->bindParam(":" . $campo, $valor, PDO::PARAM_INT);
+                $stmt->execute();
+                return $stmt->fetch(PDO::FETCH_ASSOC);
 
-            return $profesor->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            return "Error: " . $e->getMessage();
+                // return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                return "Error: " . $e->getMessage();
+            }
+        } else {
+            try {
+                $profesor = conexion::conectar()->prepare("SELECT 
+                    p.id_Profesor,
+                    u.nombre,
+                    u.apellido,
+                    u.dni,
+                    u.telefono,
+                    u.email,
+                    p.fechaContratacion,
+                    p.estado as estadoEntrenador,
+                    GROUP_CONCAT(e.especialidad SEPARATOR ', ') AS especialidades
+                FROM 
+                    profesores AS p
+                JOIN 
+                    usuarios AS u ON p.id_Usuario = u.id_Usuario
+                JOIN 
+                    especialidades_profesores AS ep ON p.id_Profesor = ep.id_Profesor
+                JOIN 
+                    especialidades AS e ON ep.id_Especialidad = e.id_Especialidad
+                GROUP BY 
+                    p.id_Profesor, p.fechaContratacion, p.estado;");
+                $profesor->execute();
+
+                return $profesor->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                return "Error: " . $e->getMessage();
+            }
         }
-       
     }
+
     // ==============================================================
     // Agregar Profesor
     // ==============================================================
@@ -47,7 +81,7 @@ class ModeloProfesores{
             );
 
             $stmtUsuarios->bindParam(":usuario", $datos["email"], PDO::PARAM_STR); // Usuario = email
-            $stmtUsuarios->bindParam(":contrasena", $datos["contrasena"], PDO::PARAM_STR);
+            $stmtUsuarios->bindParam(":contrasena",  crypt($datos["password"], '$2a$07$tawfdgyaufiusdgopfhgjxerctyuniexrcvrdtfyg$'), PDO::PARAM_STR);
             $stmtUsuarios->bindParam(":dni", $datos["dni"], PDO::PARAM_INT);
             $stmtUsuarios->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
             $stmtUsuarios->bindParam(":apellido", $datos["apellido"], PDO::PARAM_STR);
@@ -60,8 +94,8 @@ class ModeloProfesores{
             }
 
             // Obtener el último id_Usuario insertado
-            $idUsuario = Conexion::conectar()->lastInsertId();
-
+            $idUsuario = Conexion::conectar()->query("SELECT MAX(id_Usuario) AS id FROM usuarios")->fetch(PDO::FETCH_ASSOC)['id'];
+            // print_r("ID usuario: " . $idUsuario);
             // Insertar en la tabla profesores
             $stmtProfesores = Conexion::conectar()->prepare(
                 "INSERT INTO profesores (fechaContratacion, estado, id_Usuario)
@@ -141,11 +175,14 @@ class ModeloProfesores{
         try {
             $conexion = Conexion::conectar();
             $stmt = $conexion->prepare("INSERT INTO $tabla (id_Profesor, id_Especialidad) VALUES (:id_Profesor, :id_Especialidad)");
-    
+            print_r("Id Profe: ". $idProfesor);
+            print_r("Id esp: ". $especialidades[0] . " " . $especialidades[1]);
+            print_r("tabla: ". $tabla);
             foreach ($especialidades as $idEspecialidad) {
                 $stmt->bindParam(":id_Profesor", $idProfesor, PDO::PARAM_INT);
                 $stmt->bindParam(":id_Especialidad", $idEspecialidad, PDO::PARAM_INT);
                 $stmt->execute();
+                
             }
     
             return "ok";

@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $entrenador = ControladorProfesores::crtMostrarProfesor();
+                            $entrenador = ControladorProfesores::crtMostrarProfesor(NULL, NULL);
                             //print_r($profesore);
                             foreach ($entrenador as $key => $value) {
                             ?>

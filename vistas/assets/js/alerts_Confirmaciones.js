@@ -44,8 +44,6 @@ $(document).on("click", ".btnGuardar", function (e) {
       confirmButtonText: "Sí, guardar",
   }).then(function (result) {
       if (result.isConfirmed) {
-          // Enviar el formulario manualmente si se confirma
-        $("form").submit();
           $("form").submit(); // Enviar el formulario si se confirma
       }
   });

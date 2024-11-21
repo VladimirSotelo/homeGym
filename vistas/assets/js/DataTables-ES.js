@@ -20,7 +20,7 @@ $(document).ready(function () {
     });
 
     //tabla solo seleccion multiple
-    $('#tablaSelectMultiES').DataTable({
+    $('.tablaSelectMultiES').DataTable({
         scrollX: true,
         select: true,
         blurable: true,

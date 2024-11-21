@@ -5,8 +5,8 @@ class ControladorProfesores{
     // ==============================================================
     // Mostrar Profesores
     // ==============================================================
-    static public function crtMostrarProfesor(){
-        $respuesta= ModeloProfesores::mdlMostrarProfesores();
+    static public function crtMostrarProfesor($campo, $valor){
+        $respuesta= ModeloProfesores::mdlMostrarProfesores($campo, $valor);
         return $respuesta;
     }
 
@@ -16,6 +16,9 @@ class ControladorProfesores{
     public function ctrAgregarProfesor()
     {
         if (isset($_POST["dni"])) {
+            $fechaOriginal = $_POST['fechaContratacion']; // Fecha en formato dd-mm-aaaa
+            $fechaConvertida = DateTime::createFromFormat('d-m-Y', $fechaOriginal)->format('Y-m-d');
+
             // Insertar en usuarios y profesores
             $datos = array(
                 "dni" => htmlspecialchars($_POST["dni"]),
@@ -24,21 +27,29 @@ class ControladorProfesores{
                 "email" => htmlspecialchars($_POST["email"]),
                 "telefono" => htmlspecialchars($_POST["telefono"]),
                 "contrasena" => htmlspecialchars($_POST["contrasena"]),
-                "fechaContratacion" => $_POST["fechaContratacion"],
+                "fechaContratacion" => $fechaConvertida,
                 "estado" => 1,
                 "tipo" => "Profesor"            
             );
+            
 
+            //podemos volver a la página de datos
 
             $url = ControladorPlantilla::url() . "profesores";
             $respuesta = ModeloProfesores::mdlAgregarProfesor($datos);
 
             if ($respuesta == "ok") {
                 // Obtener el último id_Profesor registrado
-                $idProfesor = Conexion::conectar()->lastInsertId();
+                $idProfesor = Conexion::conectar()->query("SELECT MAX(id_Profesor) AS id FROM profesores")->fetch(PDO::FETCH_ASSOC)['id'];
+                // $idProfesor = Conexion::conectar()->lastInsertId();
+                // print_r("ID profe: " . $idProfesor);
 
                 // Insertar las especialidades seleccionadas
                 $especialidades = explode(",", $_POST["especialidadesSeleccionadas"]);
+                foreach ($especialidades as $idEspecialidad) {
+                    print_r("Id Profe: ". $idProfesor);
+                    print_r("Id esp: ". $idEspecialidad);
+                }
 
                 if (!empty($especialidades)) {
                     $respuestaEspecialidades = ModeloProfesores::mdlInsertarEspecialidadesProfesor("especialidades_profesores", $idProfesor, $especialidades);
@@ -62,9 +73,6 @@ class ControladorProfesores{
                             </script>";
                         }
                 }
-
-
-                
                 
             }
             else{
