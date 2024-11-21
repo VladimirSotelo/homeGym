@@ -35,9 +35,7 @@
                             foreach ($plan as $key => $value) {
                                 
                                 $profesor = ControladorProfesores::crtMostrarProfesor(null,null);
-                                
-                                //print_r($profesor);?>
-                                <?php foreach ($profesor as $key => $profe) {?>
+                                foreach ($profesor as $key => $profe) {?>
                                 <tr>
                                     <td> <?php echo $value["nombrePlan"];?></td>
                                     <td><?php echo $value["id_PlanEntrenamiento"]; ?></td>

@@ -3,7 +3,7 @@ $plan = "id_PlanEntrenamiento";
 $valor = $rutas[1];
 
 $plan_selec = controladorPlanes::crtMostrarPlanes($plan, $valor);
-print_r($plan_selec);
+
 if ($plan_selec) {
 ?>
     <form method="POST">

@@ -33,15 +33,23 @@
                         </thead>
                         <tbody>
                             <?php
-                            $cliente = controladorCliente::crtMostrarCliente(null, null);
-                            //print_r($profesore);
+                            
+                            $cliente = controladorCliente::crtMostrarCliente(null,null);
+                            
+
                             foreach ($cliente as $key => $value) {
-                            ?>
+                                $plan="id_PlanEntrenamiento";
+                                $valor=$value["id_PlanEntrenamiento"];
+                                $planes=controladorPlanes::crtMostrarPlanes($plan,$valor);
+                                //print_r($planes["nombrePlan"]);?>
+                                
                                 <tr>
                                     <td><?php echo $value["nombre"]; ?></td>
                                     <td><?php echo $value["apellido"]; ?></td>
                                     <td><?php echo $value["dni"]; ?> </td>
-                                    <td><?php echo $value["nombrePlan"] ?></td>
+                                    <td><?php echo $planes["nombrePlan"] ?></td>
+                                    
+                                    
                                     <td><?php echo Funciones::cambiaFormatoFecha($value["fechaInscripcion"]); ?></td>
                                     <td><?php echo $value["telefono"]; ?> </td>
 

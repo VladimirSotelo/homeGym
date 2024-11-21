@@ -102,9 +102,13 @@ if ($cliente_selec) {
                                     <div class="col-md" -->
 
                                         <label for="" class="form-label">Plan de Entrenamiento</label>
-                                        <select class="form-select" id="planes">
-                                            <option id="<?php echo $value["id_PlanEntrenamiento"] ?>"><?php echo $value["nombrePlan"] ?></option>
+                                        <select class="form-select" id="planes" name="id_PlanEntrenamiento">
+                                            <?php
+                                            $planes = controladorPlanes::crtMostrarPlanes(null, null);
+                                            foreach ($planes as $key => $nombre) { ?>
+                                                <option value="<?php echo $nombre["id_Profesor"] ?>"><?php echo  $nombre["nombrePlan"]  ?></option>
 
+                                            <?php } ?>
                                         </select>
 
                                         <?php

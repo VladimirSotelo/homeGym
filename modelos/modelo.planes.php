@@ -18,9 +18,9 @@ class ModeloPlanes
             }
         } else {
             try {
-                $agentes = Conexion::conectar()->prepare("SELECT * FROM plan_entrenamiento as pe");
-                $agentes->execute();
-                return $agentes->fetchAll(PDO::FETCH_ASSOC);
+                $planes = Conexion::conectar()->prepare("SELECT * FROM plan_entrenamiento as pe");
+                $planes->execute();
+                return $planes->fetchAll(PDO::FETCH_ASSOC);
             } catch (Exception $e) {
                 return "Error: " . $e->getMessage();
             }
