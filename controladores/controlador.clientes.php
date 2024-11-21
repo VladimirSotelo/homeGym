@@ -11,17 +11,7 @@ class controladorCliente{
     {
         if (isset($_POST["nombre"])) {
 
-            if (isset($_POST["apellido"])) {
-                $id = "";
-            } else {
-                if (isset($_POST["fechaNacimiento"])) {
-                    $id = "";
-                } else {
-                    if (htmlspecialchars($_POST["email"]) == "") {
-                        $id = "";
-                    }
-                }
-            }
+          
             $datos = array(
                 "dni" => htmlspecialchars($_POST["dni"]),
                 "apellido" => htmlspecialchars($_POST["apellido"]),
@@ -36,13 +26,6 @@ class controladorCliente{
                 
 
             );
-
-
-            // print_r($datos);
-
-            // return;
-
-            //podemos volver a la página de datos
 
             $url = ControladorPlantilla::url() . "clientes";
             $respuesta = ModeloClientes::mdlAgregarCliente($datos);

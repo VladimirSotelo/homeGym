@@ -77,7 +77,7 @@
                                 <select class="form-select" id="estado">
                                     <?php $estado = controladorCliente::crtMostrarCliente(NULL, NULL);
                                     foreach ($estado as $key => $value) { ?>
-                                        <?php if ($value["id_EstadoMembresia"] == 1) { ?>
+                                        <?php if ($value["id_EstadoMembresia"]) { ?>
                                             <option value="activo">activo</option>
                                         <?php } else { ?>
                                             <option value="inactivo">inactivo</option>
@@ -87,7 +87,7 @@
                                 </select>
 
                             </div>
-                            <div class="col-md" -->
+                            <div class="col-md" >
 
                                 <label for="planes" class="form-label">Plan de Entrenamiento</label>
                                 <select class="form-select" id="planes">

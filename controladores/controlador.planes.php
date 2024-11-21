@@ -12,18 +12,9 @@ class controladorPlanes
     {
         if (isset($_POST["nombrePlan"])) {
 
-            /*if (isset($_POST["descripcion"])) {
-                $id = "";
-            } else {
-                if (isset($_POST["duracion"])) {
-                    $id = "";
-                } else {
-                    if (htmlspecialchars($_POST["email"]) == "") {
-                        $id = "";
-                    }
-                }
-            }*/
+            
             $datos = array(
+                "id_PlanEntrenamiento"=> htmlspecialchars($_POST["id_PlanEntrenamiento"]),
                 "nombrePlan" => htmlspecialchars($_POST["nombrePlan"]),
                 "descripcion" => htmlspecialchars($_POST["descripcion"]),
                 "duracion" => htmlspecialchars($_POST["duracion"]),
@@ -31,15 +22,7 @@ class controladorPlanes
                 "id_Profesor" => htmlspecialchars($_POST["id_Profesor"]),
                 
 
-
             );
-
-
-            // print_r($datos);
-
-            // return;
-
-            //podemos volver a la página de datos
 
             $url = ControladorPlantilla::url() . "planes";
             $respuesta = ModeloPlanes::mdlAgregarPlan($datos);
@@ -74,7 +57,6 @@ class controladorPlanes
                 "duracion" => htmlspecialchars($_POST["duracion"]),
                 "cantSesionesSemanales" => htmlspecialchars($_POST["cantSesionesSemanales"]),
                 "id_Profesor" => htmlspecialchars($_POST["id_Profesor"]),
-                "id_PlanEntrenamiento" =>htmlspecialchars($_POST["id_PlanEntrenamiento"])
             );
 
             $url = ControladorPlantilla::url() . "planes";
@@ -84,7 +66,7 @@ class controladorPlanes
                 echo '<script>
                     fncSweetAlert(
                     "success",
-                    "El PLan ' . htmlspecialchars($_POST["nombrePlan"]) .  ' se actualizó correctamente",
+                    "El Plan ' . htmlspecialchars($_POST["nombrePlan"]) .  ' se actualizó correctamente",
                     "' . $url . '"
                     );
                     </script>';
@@ -92,7 +74,7 @@ class controladorPlanes
                 echo "<script>
                 Swal.fire({
                     title: 'Error',
-                    text: 'No se pudieron actualizar los datos del agente.',
+                    text: 'No se pudieron actualizar los datos del Plan.',
                     icon: 'error'
                 });
                 </script>";
