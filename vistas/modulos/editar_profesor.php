@@ -1,12 +1,9 @@
 <?php
 $especialidad = controladorEspecialidades::crtMostrarEspecialidades();
-$idProfesor = "id_Profesor";
+$idProfesor = "p.id_Profesor";
 $valor = $rutas[1];
 
 $profesor_selec = ControladorProfesores::crtMostrarProfesor($idProfesor, $valor);
-
-//print_r($valor);    
-
 
 if ($profesor_selec) {
 ?>
@@ -98,7 +95,7 @@ if ($profesor_selec) {
                                             </div>
                                             <div class="col-md">
                                                 <div class="form-floating mb-3">
-                                                    <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" value="<?php echo $profesor_selec["contrasena"]; ?>" required>
+                                                    <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" value="Sin cambios" required>
                                                     <label for="contrasena">Contraseña</label>
                                                 </div>
                                             </div>
@@ -135,13 +132,14 @@ if ($profesor_selec) {
                                                 <?php 
                                                 if ($value["estadoEntrenador"]){
                                                 ?>
-                                                    <option selected>Activo</option>
-                                                    <option >Inactivo</option>
+                                                    <option >Activo</option>
+                                                    <option selected>Inactivo</option>
+                                                    
                                                 <?php 
                                                 }else{
                                                 ?>
-                                                    <option >Activo</option>
-                                                    <option selected>Inactivo</option>
+                                                    <option selected>Activo</option>
+                                                    <option >Inactivo</option>                                                    
                                                 <?php 
                                                 }
                                                 ?>
